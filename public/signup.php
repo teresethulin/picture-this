@@ -1,6 +1,6 @@
 <?php require __DIR__ . '/views/header.php'; ?>
 
-<form action="signup.php" method="post">
+<form action="app/users/signup.php" method="post">
     <h2>
         Sign up to see photos from your friends.
     </h2>
