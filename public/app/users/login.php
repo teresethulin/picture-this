@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require __DIR__.'/../autoload.php';
+require __DIR__ . '/../autoload.php';
 
 // Check if both email and password exists in the POST request.
 if (isset($_POST['email'], $_POST['password'])) {
@@ -35,5 +35,5 @@ if (isset($_POST['email'], $_POST['password'])) {
 }
 
 // We should put this redirect in the end of this file since we always want to
-// redirect the user back from this file. We don't know
+// redirect the user back from this file.
 redirect('/');
