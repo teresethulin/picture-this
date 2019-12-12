@@ -6,7 +6,7 @@
     </h2>
     <div>
         <input type="text" name="email" id="email" placeholder="Email" required>
-        <input type="text" name="full-name" id="full-name" placeholder="Full name" required>
+        <input type="text" name="full_name" id="full_name" placeholder="Full name" required>
         <input type="text" name="username" id="username" placeholder="Username" required>
         <input type="text" name="password" id="password" placeholder="Password" required>
     </div>

@@ -6,5 +6,5 @@ declare(strict_types=1);
 
 return [
     'title' => 'Picture This',
-    'database_path' => 'sqlite:app/database/picture_this.db',
+    'database_path' => sprintf('sqlite:%s/database/picture_this.db', __DIR__),
 ];
