@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
+// require __DIR__ . '/views/header.php';
 
 if (isset($_POST['username'], $_POST['full_name'], $_POST['email'], $_POST['password'])) {
     $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
@@ -43,7 +44,9 @@ if (isset($_POST['username'], $_POST['full_name'], $_POST['email'], $_POST['pass
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->bindParam(':password', $password, PDO::PARAM_STR);
 
+    $_SESSION['user'] = $_POST['username'];
     $statement->execute();
+
 
     redirect('/index.php');
 }

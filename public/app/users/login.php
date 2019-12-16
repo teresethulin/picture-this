@@ -3,15 +3,17 @@
 declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
+require __DIR__ . '/../errors.php';
 
 
-// Check if both email and password exists in the POST request.
-if (isset($_POST['email'], $_POST['password'])) {
-    $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
+// Check if both username and password exists in the POST request.
+if (isset($_POST['username'], $_POST['password'])) {
+    $username = trim(filter_var($_POST['username'], FILTER_SANITIZE_STRING));
 
-    // Prepare, bind email parameter and execute the database query.
-    $statement = $pdo->prepare('SELECT * FROM users WHERE email = :email');
-    $statement->bindParam(':email', $email, PDO::PARAM_STR);
+    // Prepare, bind parameter and execute the database query.
+    $statement = $pdo->prepare('SELECT * FROM user WHERE username = :username');
+
+    $statement->bindParam(':username', $username, PDO::PARAM_STR);
     $statement->execute();
 
     // Fetch the user as an associative array.
@@ -32,6 +34,7 @@ if (isset($_POST['email'], $_POST['password'])) {
         unset($user['password']);
 
         $_SESSION['user'] = $user;
+        echo 'logged in';
     }
 }
 
