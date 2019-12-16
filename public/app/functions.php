@@ -17,3 +17,8 @@ if (!function_exists('redirect')) {
         exit;
     }
 }
+
+function isLoggedIn()
+{
+    return isset($_SESSION['user']);
+}
