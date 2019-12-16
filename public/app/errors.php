@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 $errors = [];
 
-if ($_SESSION['error']) {
+if (isset($_SESSION['errors'])) {
 
-    $errors = $_SESSION['error'];
-    unset($_SESSION['error']);
+    $errors = $_SESSION['errors'];
+    unset($_SESSION['errors']);
 }

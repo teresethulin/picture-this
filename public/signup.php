@@ -1,11 +1,16 @@
 <?php require __DIR__ . '/views/header.php'; ?>
 
 <form action="app/users/signup.php" method="post">
+    <?php foreach ($errors as $error) : ?>
+        <div class="alert alert-danger">
+            <?php echo $error; ?>
+        </div>
+    <?php endforeach; ?>
     <h2>
         Sign up to see photos from your friends.
     </h2>
     <div>
-        <input type="text" name="email" id="email" placeholder="Email" required>
+        <input type="email" name="email" id="email" placeholder="Email" required>
         <input type="text" name="full_name" id="full_name" placeholder="Full name" required>
         <input type="text" name="username" id="username" placeholder="Username" required>
         <input type="text" name="password" id="password" placeholder="Password" required>
