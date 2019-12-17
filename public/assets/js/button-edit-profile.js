@@ -3,7 +3,7 @@
 const editProfileButton = document.querySelector(".edit-profile");
 
 const goToEditProfile = () => {
-  location.href = "/../app/users/edit_profile.php";
+  location.href = "/edit-profile.php";
 };
 
 editProfileButton.addEventListener("click", goToEditProfile);

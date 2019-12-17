@@ -2,13 +2,13 @@
 
 declare(strict_types=1); ?>
 
-<?php require __DIR__ . '/../../views/header.php'; ?>
+<?php require __DIR__ . '/views/header.php'; ?>
 
 
 <!-- Check if user is logged in before they can edit their user data -->
 <?php if (isLoggedIn()) : ?>
 
-    <form action="app/users/edit_profile.php" method="post">
+    <form action="app/users/edit-profile.php" method="post">
         <?php foreach ($errors as $error) : ?>
             <div class="alert alert-danger">
                 <?php echo $error; ?>
