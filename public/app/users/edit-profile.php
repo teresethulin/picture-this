@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 require __DIR__ . '/../../views/header.php';
 
+// Redirect the user if not logged in
 if (!isLoggedIn()) {
     redirect('/');
 }
 
 $userID = $_SESSION['user']['id'];
 
+// Update user email
 if (isset($_POST['email'])) {
     $newEmail = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
     $errors = [];
@@ -24,10 +26,9 @@ if (isset($_POST['email'])) {
         exit;
     }
 
+    // Get user, then update
     getUserById($userID, $pdo);
-
     $query = 'UPDATE user SET email = :new_email WHERE id = :userid';
-
     $statement = $pdo->prepare($query);
 
     if (!$statement) {
