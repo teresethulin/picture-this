@@ -23,15 +23,22 @@ function isLoggedIn()
     return isset($_SESSION['user']);
 }
 
-// function getUserById()
-// {
-//     $username = $_SESSION['user']['username'];
-//     $statement = $pdo->prepare('SELECT id FROM user WHERE username = :username');
+/**
+ * Get user data by id
+ *
+ * @param string $userID
+ * @param PDO $pdo
+ * @return array
+ */
+function getUserById(string $userID, PDO $pdo): array
+{
+    $statement = $pdo->prepare('SELECT * FROM user WHERE id = :userid');
 
-//     $statement->bindParam(':username', $username, PDO::PARAM_STR);
-//     $statement->execute();
-
-//     // Fetch the user as an associative array.
-//     $user = $statement->fetch(PDO::FETCH_ASSOC);
-//     return $user;
-// }
+    $statement->bindParam(':userid', $userID, PDO::PARAM_STR);
+    $statement->execute();
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
+    if ($user) {
+        return $user;
+    }
+    return $user = [];
+}

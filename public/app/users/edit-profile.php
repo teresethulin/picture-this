@@ -24,15 +24,7 @@ if (isset($_POST['email'])) {
         exit;
     }
 
-    // Get user by ID
-    $statement = $pdo->prepare('SELECT * FROM user WHERE id = :userid');
-
-    $statement->bindParam(':userid', $userID, PDO::PARAM_STR);
-    $statement->execute();
-
-    // Fetch the user
-    $user = $statement->fetch(PDO::FETCH_ASSOC);
-
+    getUserById($userID, $pdo);
 
     $query = 'UPDATE user SET email = :new_email WHERE id = :userid';
 
