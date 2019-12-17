@@ -19,9 +19,14 @@ declare(strict_types=1); ?>
             Edit your profile.
         </h2>
         <div>
-            <input type="email" name="email" id="email" placeholder="Email" required>
-            <input type="text" name="full_name" id="full_name" placeholder="Full name" required>
-            <input type="text" name="biography" id="biography" placeholder="Tell us something about yourself." required>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="<?php echo $_SESSION['user']['email']; ?>" required>
+            <br>
+            <label for="full_name">Full name</label>
+            <input type="text" name="full_name" id="full_name" placeholder="<?php echo $_SESSION['user']['full_name']; ?>" required>
+            <br>
+            <label for="biography">Biography</label>
+            <input type="text" name="biography" id="biography" placeholder="<?php echo $_SESSION['user']['biography']; ?>" required>
         </div>
 
         <button type="submit">Save</button>
