@@ -44,9 +44,14 @@ if (isset($_POST['username'], $_POST['full_name'], $_POST['email'], $_POST['pass
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->bindParam(':password', $password, PDO::PARAM_STR);
 
-    $_SESSION['user'] = $_POST['username'];
     $statement->execute();
 
+    // Log in the user after sign up
+    $statement = $pdo->prepare('SELECT * FROM user WHERE username = :username');
+    $statement->bindParam(':username', $username, PDO::PARAM_STR);
+    $statement->execute();
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
+    $_SESSION['user'] = $user;
 
     redirect('/index.php');
 }
