@@ -18,10 +18,16 @@ if (!function_exists('redirect')) {
     }
 }
 
+/**
+ * Determine if a user is logged in
+ *
+ * @return boolean
+ */
 function isLoggedIn()
 {
     return isset($_SESSION['user']);
 }
+
 
 /**
  * Get user data by id
