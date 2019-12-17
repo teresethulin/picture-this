@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
-// require __DIR__ . '/views/header.php';
+
 
 if (isset($_POST['username'], $_POST['full_name'], $_POST['email'], $_POST['password'])) {
     $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
@@ -46,7 +46,7 @@ if (isset($_POST['username'], $_POST['full_name'], $_POST['email'], $_POST['pass
 
     $statement->execute();
 
-    // Log in the user after sign up
+    // Log in the user after signing up
     $statement = $pdo->prepare('SELECT * FROM user WHERE username = :username');
     $statement->bindParam(':username', $username, PDO::PARAM_STR);
     $statement->execute();
