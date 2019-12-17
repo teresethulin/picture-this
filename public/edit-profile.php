@@ -18,15 +18,18 @@ declare(strict_types=1); ?>
         <h2>
             Edit your profile.
         </h2>
-        <div>
+        <div class="form-element">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="<?php echo $_SESSION['user']['email']; ?>" required>
-            <br>
+            <input type="email" name="email" id="email" value="<?php echo $_SESSION['user']['email']; ?>">
+        </div>
+        <div class="form-element">
             <label for="full_name">Full name</label>
-            <input type="text" name="full_name" id="full_name" placeholder="<?php echo $_SESSION['user']['full_name']; ?>" required>
-            <br>
+            <input type="text" name="full_name" id="full_name" value="<?php echo $_SESSION['user']['full_name']; ?>">
+        </div>
+        <div class="form-element">
             <label for="biography">Biography</label>
-            <input type="text" name="biography" id="biography" placeholder="<?php echo $_SESSION['user']['biography']; ?>" required>
+            <textarea name="biography" id="biography" form="post" maxlength="255" value="<?php echo $_SESSION['user']['biography']; ?>">
+            </textarea>
         </div>
 
         <button type="submit">Save</button>
