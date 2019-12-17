@@ -31,7 +31,7 @@ if (isset($_POST['username'], $_POST['full_name'], $_POST['email'], $_POST['pass
         exit;
     }
 
-    $query = "INSERT INTO user (username, full_name, email, password, date_created) VALUES (:username, :full_name, :email, :password, time('now'))";
+    $query = "INSERT INTO user (username, full_name, email, password, date_created) VALUES (:username, :full_name, :email, :password, date('now'))";
 
     $statement = $pdo->prepare($query);
 
