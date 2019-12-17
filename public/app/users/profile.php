@@ -1,4 +1,10 @@
+<?php
+
+declare(strict_types=1); ?>
+
 <?php require __DIR__ . '/../../views/header.php'; ?>
+
+// Check if user is logged in before printing userdata to profile
 
 <?php if (isLoggedIn()) : ?>
 
