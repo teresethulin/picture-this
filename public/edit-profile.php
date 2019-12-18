@@ -60,7 +60,7 @@ declare(strict_types=1); ?>
 
 
     <!-- UPDATE BIOGRAPHY -->
-    <form action="app/users/edit-profile.php" method="post">
+    <form action="app/users/biography.php" method="post">
 
         <!-- Display error messages -->
         <?php foreach ($errors as $error) : ?>
@@ -94,7 +94,7 @@ declare(strict_types=1); ?>
 
 
     <!-- UPDATE PASSWORD -->
-    <form action="app/users/edit-profile.php" method="post">
+    <form action="app/users/password.php" method="post">
 
         <!-- Display error messages -->
         <?php foreach ($errors as $error) : ?>
