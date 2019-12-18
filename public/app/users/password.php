@@ -18,38 +18,6 @@ $errors = [];
 $successes = [];
 
 
-// UPDATE USER BIOGRAPHY
-if (isset($_POST['biography'])) {
-
-    $biography = filter_var($_POST['biography'], FILTER_SANITIZE_STRING);
-
-    $query = 'UPDATE user SET biography = :biography WHERE id = :userid';
-    $statement = $pdo->prepare($query);
-
-    if (!$statement) {
-        die(var_dump($pdo->errorInfo()));
-    }
-
-    $statement->bindParam(':biography', $biography, PDO::PARAM_STR);
-    $statement->execute([
-        ':biography' => $biography,
-        ':userid' => $userID,
-    ]);
-
-    $_SESSION['user']['biography'] = $biography;
-
-    // Display confirmation
-    $successes[] = "Biography updated.";
-
-    if (count($successes) > 0) {
-
-        $_SESSION['successes'] = $successes;
-        redirect('/edit-profile.php');
-        exit;
-    }
-}
-
-
 // UPDATE USER PASSWORD
 if (isset($_POST['password'], $_POST['new-password'])) {
     $password = $_POST['password'];
@@ -96,5 +64,3 @@ if (isset($_POST['password'], $_POST['new-password'])) {
         exit;
     }
 }
-
-// redirect('/edit-profile.php');

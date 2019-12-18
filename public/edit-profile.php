@@ -8,7 +8,10 @@ declare(strict_types=1); ?>
 <!-- Check if user is logged in before they can edit their user data -->
 <?php if (isLoggedIn()) : ?>
 
-    <form action="app/users/edit-profile.php" method="post">
+
+    <!-- UPDATE EMAIL -->
+    <form action="app/users/email.php" method="post">
+
 
         <!-- Display error messages -->
         <?php foreach ($errors as $error) : ?>
@@ -28,11 +31,7 @@ declare(strict_types=1); ?>
 
         <?php endforeach; ?>
 
-        <h2>
-            Edit your details
-        </h2>
 
-        <!-- UPDATE EMAIL -->
         <div class="form-element">
 
             <label for="email">Email</label>
@@ -40,7 +39,14 @@ declare(strict_types=1); ?>
 
         </div>
 
-        <!-- UPDATE NAME -->
+        <button type="submit">Save</button>
+
+    </form>
+
+
+    <!-- UPDATE NAME -->
+    <form action="app/users/name.php" method="post">
+
         <div class="form-element">
 
             <label for="full_name">Full name</label>
@@ -48,7 +54,7 @@ declare(strict_types=1); ?>
 
         </div>
 
-        <button type="submit">Save details</button>
+        <button type="submit">Save</button>
 
     </form>
 
