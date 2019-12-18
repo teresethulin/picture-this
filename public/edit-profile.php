@@ -68,18 +68,18 @@ declare(strict_types=1); ?>
         <!-- Display error messages -->
         <?php foreach ($errors as $error) : ?>
 
-            <div class="alert alert-danger">
+            <p>
                 <?php echo $error; ?>
-            </div>
+            </p>
 
         <?php endforeach; ?>
 
         <!-- Display confirmation of save success -->
         <?php foreach ($successes as $success) : ?>
 
-            <div class="alert alert-primary" role="alert">
+            <p>
                 <?php echo $success; ?>
-            </div>
+            </p>
 
         <?php endforeach; ?>
 

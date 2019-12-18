@@ -26,7 +26,7 @@ if (isset($_POST['email'])) {
     // If errors, display error message and redirect user
     if (count($errors) > 0) {
         $_SESSION['errors'] = $errors;
-        redirect('profile.php');
+        redirect('/edit-profile.php');
         exit;
     }
 
@@ -50,7 +50,50 @@ if (isset($_POST['email'])) {
 
     if (count($successes) > 0) {
         $_SESSION['successes'] = $successes;
-        redirect('profile.php');
+        redirect('/edit-profile.php');
+        exit;
+    }
+}
+
+// UPDATE USER BIOGRAPHY
+if (isset($_POST['biography'])) {
+    $newBiography = trim(filter_var($_POST['biography'], FILTER_SANITIZE_STRING));
+    $errors = [];
+    $successes = [];
+    echo "Hello.";
+
+    if (!filter_var($newBiography, FILTER_SANITIZE_STRING)) {
+        $errors[] = "There's something wrong here.";
+    }
+
+    // If errors, display error message and redirect user
+    if (count($errors) > 0) {
+        $_SESSION['errors'] = $errors;
+        redirect('/edit-profile.php');
+        exit;
+    }
+
+    getUserById($userID, $pdo);
+    $query = 'UPDATE user SET biography = :biography WHERE id = :userid';
+    $statement = $pdo->prepare($query);
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->bindParam(':biography', $newBiography, PDO::PARAM_STR);
+    $statement->execute([
+        ':biography' => $newBiography,
+        ':userid' => $userID,
+    ]);
+    $_SESSION['user']['biography'] = $newBiography;
+
+    // Display confirmation
+    $successes[] = "Biography updated.";
+
+    if (count($successes) > 0) {
+        $_SESSION['successes'] = $successes;
+        redirect('//edit-profile.php');
         exit;
     }
 }
@@ -75,7 +118,7 @@ if (isset($_POST['password'], $_POST['new-password'])) {
     if (count($errors) > 0) {
 
         $_SESSION['errors'] = $errors;
-        redirect('profile.php');
+        redirect('/edit-profile.php');
         exit;
     }
 
@@ -103,7 +146,7 @@ if (isset($_POST['password'], $_POST['new-password'])) {
     if (count($successes) > 0) {
 
         $_SESSION['successes'] = $successes;
-        redirect('profile.php');
+        redirect('/edit-profile.php');
         exit;
     }
 }
