@@ -57,7 +57,7 @@ declare(strict_types=1); ?>
 
         </div>
 
-        <button type="submit">Save</button>
+        <button type="submit">Save details</button>
 
     </form>
 
@@ -102,6 +102,8 @@ declare(strict_types=1); ?>
             <input type="password" name="new-password">
 
         </div>
+
+        <button type="submit">Save password</button>
 
     </form>
 
