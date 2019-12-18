@@ -41,5 +41,10 @@ if (isset($_POST['email'])) {
         ':userid' => $userID,
     ]);
 
-    echo "Email updated.";
+    $successes[] = "Email updated.";
+    if (count($successes) > 0) {
+        $_SESSION['successes'] = $successes;
+        redirect('profile.php');
+        exit;
+    }
 }
