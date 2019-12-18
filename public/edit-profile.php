@@ -48,7 +48,32 @@ declare(strict_types=1); ?>
 
         </div>
 
-        <!-- UPDATE BIOGRAPHY -->
+        <button type="submit">Save details</button>
+
+    </form>
+
+
+    <!-- UPDATE BIOGRAPHY -->
+    <form action="app/users/edit-profile.php" method="post">
+
+        <!-- Display error messages -->
+        <?php foreach ($errors as $error) : ?>
+
+            <div class="alert alert-danger">
+                <?php echo $error; ?>
+            </div>
+
+        <?php endforeach; ?>
+
+        <!-- Display confirmation of save success -->
+        <?php foreach ($successes as $success) : ?>
+
+            <div class="alert alert-primary" role="alert">
+                <?php echo $success; ?>
+            </div>
+
+        <?php endforeach; ?>
+
         <div class="form-element">
 
             <label for="biography">Biography</label>
@@ -57,7 +82,7 @@ declare(strict_types=1); ?>
 
         </div>
 
-        <button type="submit">Save details</button>
+        <button type="submit">Save biography</button>
 
     </form>
 

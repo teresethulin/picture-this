@@ -9,15 +9,18 @@ if (!isLoggedIn()) {
     redirect('/');
 }
 
-
+// User
 $userID = $_SESSION['user']['id'];
+$user = getUserById($userID, $pdo);
+
+// Display messages
+$errors = [];
+$successes = [];
 
 
 // UPDATE USER EMAIL
 if (isset($_POST['email'])) {
     $newEmail = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
-    $errors = [];
-    $successes = [];
 
     if (!filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
         $errors[] = 'Please fill in a valid email.';
@@ -31,7 +34,7 @@ if (isset($_POST['email'])) {
     }
 
     // Get user data, then send query to database
-    getUserById($userID, $pdo);
+
     $query = 'UPDATE user SET email = :new_email WHERE id = :userid';
     $statement = $pdo->prepare($query);
 
@@ -45,6 +48,8 @@ if (isset($_POST['email'])) {
         ':userid' => $userID,
     ]);
 
+    $_SESSION['user']['email'] = $newEmail;
+
     // Display confirmation
     $successes[] = "Email updated.";
 
@@ -57,23 +62,9 @@ if (isset($_POST['email'])) {
 
 // UPDATE USER BIOGRAPHY
 if (isset($_POST['biography'])) {
-    $newBiography = trim(filter_var($_POST['biography'], FILTER_SANITIZE_STRING));
-    $errors = [];
-    $successes = [];
-    echo "Hello.";
 
-    if (!filter_var($newBiography, FILTER_SANITIZE_STRING)) {
-        $errors[] = "There's something wrong here.";
-    }
+    $biography = filter_var($_POST['biography'], FILTER_SANITIZE_STRING);
 
-    // If errors, display error message and redirect user
-    if (count($errors) > 0) {
-        $_SESSION['errors'] = $errors;
-        redirect('/edit-profile.php');
-        exit;
-    }
-
-    getUserById($userID, $pdo);
     $query = 'UPDATE user SET biography = :biography WHERE id = :userid';
     $statement = $pdo->prepare($query);
 
@@ -81,19 +72,21 @@ if (isset($_POST['biography'])) {
         die(var_dump($pdo->errorInfo()));
     }
 
-    $statement->bindParam(':biography', $newBiography, PDO::PARAM_STR);
+    $statement->bindParam(':biography', $biography, PDO::PARAM_STR);
     $statement->execute([
-        ':biography' => $newBiography,
+        ':biography' => $biography,
         ':userid' => $userID,
     ]);
-    $_SESSION['user']['biography'] = $newBiography;
+
+    $_SESSION['user']['biography'] = $biography;
 
     // Display confirmation
     $successes[] = "Biography updated.";
 
     if (count($successes) > 0) {
+
         $_SESSION['successes'] = $successes;
-        redirect('//edit-profile.php');
+        redirect('/edit-profile.php');
         exit;
     }
 }
@@ -102,11 +95,6 @@ if (isset($_POST['biography'])) {
 // UPDATE USER PASSWORD
 if (isset($_POST['password'], $_POST['new-password'])) {
     $password = $_POST['password'];
-    $errors = [];
-    $successes = [];
-
-    // Get user data
-    $user = getUserById($userID, $pdo);
 
     // Verify entered password
     if (!password_verify($password, $user['password'])) {
@@ -150,3 +138,5 @@ if (isset($_POST['password'], $_POST['new-password'])) {
         exit;
     }
 }
+
+// redirect('/edit-profile.php');
