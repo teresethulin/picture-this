@@ -62,6 +62,7 @@ declare(strict_types=1); ?>
     <!-- UPDATE BIOGRAPHY -->
     <form action="app/users/biography.php" method="post">
 
+
         <!-- Display error messages -->
         <?php foreach ($errors as $error) : ?>
 
@@ -80,11 +81,12 @@ declare(strict_types=1); ?>
 
         <?php endforeach; ?>
 
+
         <div class="form-element">
 
             <label for="biography">Biography</label>
-            <textarea name="biography" id="biography" form="post" maxlength="255" value="<?php echo $_SESSION['user']['biography']; ?>">
-            </textarea>
+            <textarea type="text" name="biography" maxlength="255" value="<?php echo $_SESSION['user']['biography']; ?>">
+        </textarea>
 
         </div>
 

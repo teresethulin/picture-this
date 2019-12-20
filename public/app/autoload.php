@@ -14,11 +14,11 @@ mb_internal_encoding('UTF-8');
 // Include the helper functions.
 require __DIR__ . '/functions.php';
 
-// Include error message function
-require __DIR__ . '/errors.php';
+// // Include error message function
+// require __DIR__ . '/errors.php';
 
-// Include success message function
-require __DIR__ . '/successes.php';
+// // Include success message function
+// require __DIR__ . '/successes.php';
 
 // Fetch the global configuration array.
 $config = require __DIR__ . '/config.php';
