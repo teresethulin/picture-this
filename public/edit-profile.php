@@ -1,102 +1,102 @@
 <?php
 
-declare(strict_types=1); ?>
+declare(strict_types=1);
 
-<?php require __DIR__ . '/views/header.php'; ?>
+require __DIR__ . '/views/header.php';
 
+// Redirect the user if not logged in
+if (!isLoggedIn()) {
+    redirect('/');
+}
+?>
 
-<!-- Check if user is logged in before they can edit their user data -->
-<?php if (isLoggedIn()) : ?>
+<!-- Display error messages -->
+<?php foreach ($errors as $error) : ?>
 
-    <!-- Display error messages -->
-    <?php foreach ($errors as $error) : ?>
+    <div class="alert alert-danger">
+        <?php echo $error; ?>
+    </div>
 
-        <div class="alert alert-danger">
-            <?php echo $error; ?>
-        </div>
+<?php endforeach; ?>
 
-    <?php endforeach; ?>
+<!-- Display confirmation of save success -->
+<?php foreach ($successes as $success) : ?>
 
-    <!-- Display confirmation of save success -->
-    <?php foreach ($successes as $success) : ?>
+    <div class="alert alert-primary" role="alert">
+        <?php echo $success; ?>
+    </div>
 
-        <div class="alert alert-primary" role="alert">
-            <?php echo $success; ?>
-        </div>
+<?php endforeach; ?>
 
-    <?php endforeach; ?>
+<!-- UPDATE EMAIL -->
+<form action="app/users/email.php" method="post">
 
-    <!-- UPDATE EMAIL -->
-    <form action="app/users/email.php" method="post">
+    <div class="form-element">
 
-        <div class="form-element">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" value="<?php echo $_SESSION['user']['email']; ?>">
 
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" value="<?php echo $_SESSION['user']['email']; ?>">
+    </div>
 
-        </div>
+    <button type="submit">Save</button>
 
-        <button type="submit">Save</button>
-
-    </form>
-
-
-    <!-- UPDATE NAME -->
-    <form action="app/users/name.php" method="post">
-
-        <div class="form-element">
-
-            <label for="full_name">Full name</label>
-            <input type="text" name="full_name" id="full_name" value="<?php echo $_SESSION['user']['full_name']; ?>">
-
-        </div>
-
-        <button type="submit">Save</button>
-
-    </form>
+</form>
 
 
-    <!-- UPDATE BIOGRAPHY -->
-    <form action="app/users/biography.php" method="post">
+<!-- UPDATE NAME -->
+<form action="app/users/name.php" method="post">
 
-        <div class="form-element">
+    <div class="form-element">
 
-            <label for="biography">Biography</label>
-            <textarea type="text" name="biography" maxlength="255" value="<?php echo $_SESSION['user']['biography']; ?>">
+        <label for="full_name">Full name</label>
+        <input type="text" name="full_name" id="full_name" value="<?php echo $_SESSION['user']['full_name']; ?>">
+
+    </div>
+
+    <button type="submit">Save</button>
+
+</form>
+
+
+<!-- UPDATE BIOGRAPHY -->
+<form action="app/users/biography.php" method="post">
+
+    <div class="form-element">
+
+        <label for="biography">Biography</label>
+        <textarea type="text" name="biography" maxlength="255" value="<?php echo $_SESSION['user']['biography']; ?>">
         </textarea>
 
-        </div>
+    </div>
 
-        <button type="submit">Save biography</button>
+    <button type="submit">Save biography</button>
 
-    </form>
+</form>
 
 
-    <!-- UPDATE PASSWORD -->
-    <form action="app/users/password.php" method="post">
+<!-- UPDATE PASSWORD -->
+<form action="app/users/password.php" method="post">
 
-        <h2>
-            Change password
-        </h2>
+    <h2>
+        Change password
+    </h2>
 
-        <!-- CURRENT PASSWORD -->
-        <div class="form-element">
+    <!-- CURRENT PASSWORD -->
+    <div class="form-element">
 
-            <label for="password">Current password</label>
-            <input type="password" name="password">
+        <label for="password">Current password</label>
+        <input type="password" name="password">
 
-        </div>
+    </div>
 
-        <!-- NEW PASSWORD -->
-        <div class="form-element">
+    <!-- NEW PASSWORD -->
+    <div class="form-element">
 
-            <label for="new-password">New password</label>
-            <input type="password" name="new-password">
+        <label for="new-password">New password</label>
+        <input type="password" name="new-password">
 
-        </div>
+    </div>
 
-        <button type="submit">Save password</button>
+    <button type="submit">Save password</button>
 
-    </form>
-
-<?php endif; ?>
+</form>
