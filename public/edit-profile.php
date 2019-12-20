@@ -8,29 +8,26 @@ declare(strict_types=1); ?>
 <!-- Check if user is logged in before they can edit their user data -->
 <?php if (isLoggedIn()) : ?>
 
+    <!-- Display error messages -->
+    <?php foreach ($errors as $error) : ?>
+
+        <div class="alert alert-danger">
+            <?php echo $error; ?>
+        </div>
+
+    <?php endforeach; ?>
+
+    <!-- Display confirmation of save success -->
+    <?php foreach ($successes as $success) : ?>
+
+        <div class="alert alert-primary" role="alert">
+            <?php echo $success; ?>
+        </div>
+
+    <?php endforeach; ?>
 
     <!-- UPDATE EMAIL -->
     <form action="app/users/email.php" method="post">
-
-
-        <!-- Display error messages -->
-        <?php foreach ($errors as $error) : ?>
-
-            <div class="alert alert-danger">
-                <?php echo $error; ?>
-            </div>
-
-        <?php endforeach; ?>
-
-        <!-- Display confirmation of save success -->
-        <?php foreach ($successes as $success) : ?>
-
-            <div class="alert alert-primary" role="alert">
-                <?php echo $success; ?>
-            </div>
-
-        <?php endforeach; ?>
-
 
         <div class="form-element">
 
@@ -62,26 +59,6 @@ declare(strict_types=1); ?>
     <!-- UPDATE BIOGRAPHY -->
     <form action="app/users/biography.php" method="post">
 
-
-        <!-- Display error messages -->
-        <?php foreach ($errors as $error) : ?>
-
-            <div class="alert alert-danger">
-                <?php echo $error; ?>
-            </div>
-
-        <?php endforeach; ?>
-
-        <!-- Display confirmation of save success -->
-        <?php foreach ($successes as $success) : ?>
-
-            <div class="alert alert-primary" role="alert">
-                <?php echo $success; ?>
-            </div>
-
-        <?php endforeach; ?>
-
-
         <div class="form-element">
 
             <label for="biography">Biography</label>
@@ -97,24 +74,6 @@ declare(strict_types=1); ?>
 
     <!-- UPDATE PASSWORD -->
     <form action="app/users/password.php" method="post">
-
-        <!-- Display error messages -->
-        <?php foreach ($errors as $error) : ?>
-
-            <p>
-                <?php echo $error; ?>
-            </p>
-
-        <?php endforeach; ?>
-
-        <!-- Display confirmation of save success -->
-        <?php foreach ($successes as $success) : ?>
-
-            <p>
-                <?php echo $success; ?>
-            </p>
-
-        <?php endforeach; ?>
 
         <h2>
             Change password
