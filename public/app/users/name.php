@@ -21,7 +21,7 @@ $successes = [];
 // UPDATE USER FULL NAME
 if (isset($_POST['full_name'])) {
 
-    $name = filter_var($_POST['full_name'], FILTER_SANITIZE_STRING);
+    $fullName = trim(filter_var($_POST['full_name'], FILTER_SANITIZE_STRING));
 
     $query = 'UPDATE user SET full_name = :name WHERE id = :userid';
     $statement = $pdo->prepare($query);
@@ -30,11 +30,13 @@ if (isset($_POST['full_name'])) {
         die(var_dump($pdo->errorInfo()));
     }
 
-    $statement->bindParam(':name', $name, PDO::PARAM_STR);
+    $statement->bindParam(':name', $fullName, PDO::PARAM_STR);
     $statement->execute([
-        ':name' => $name,
+        ':name' => $fullName,
         ':userid' => $userID,
     ]);
+
+    $_SESSION['user']['full_name'] = $fullName;
 
     // Display confirmation
     $successes[] = "Name updated.";
