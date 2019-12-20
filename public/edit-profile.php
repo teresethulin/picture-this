@@ -28,6 +28,13 @@ if (!isLoggedIn()) {
 
 <?php endforeach; ?>
 
+<!-- UPLOAD AVATAR -->
+<form action="/upload.php" method="POST" enctype="multipart/form-data">
+    <input type="file" name="avatar" id="avatar" accept=".png, .jpg" required>
+    <button type="submit">Upload</button>
+</form>
+
+
 <!-- UPDATE EMAIL -->
 <form action="app/users/email.php" method="post">
 
