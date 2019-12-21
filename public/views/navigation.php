@@ -15,6 +15,10 @@
         </li><!-- /nav-item -->
 
         <li class="nav-item">
+            <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/upload.php' ? 'active' : ''; ?>" href="/upload.php">Upload</a>
+        </li><!-- /nav-item -->
+
+        <li class="nav-item">
             <?php if (isLoggedIn()) : ?>
                 <a class="nav-link" href="/app/users/logout.php">Logout</a>
             <?php else : ?>
