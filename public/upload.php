@@ -15,7 +15,7 @@ if (!isLoggedIn()) {
             Choose image to upload
         </label>
 
-        <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .gif" required>
+        <input type="file" name="image" id="image" accept="image/*" required>
 
         <label for="caption">
             Image caption

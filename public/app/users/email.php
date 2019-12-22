@@ -33,7 +33,7 @@ if (isset($_POST['email'])) {
         exit;
     }
 
-    // Get user data, then send query to database
+    // Send query to database
 
     $query = 'UPDATE user SET email = :new_email WHERE id = :userid';
     $statement = $pdo->prepare($query);
