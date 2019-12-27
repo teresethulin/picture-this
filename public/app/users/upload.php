@@ -14,11 +14,11 @@ if (isset($_FILES['image'], $_POST['caption'])) {
 
     $errors = [];
     $image = $_FILES['image'];
-    $fileName = $image['name'];
+    $fileName = date('ymd') . '-' . $image['name'];
     $fileType = $image['type'];
     $fileSize = $image['size'];
     $caption = trim(filter_var($_POST['caption'], FILTER_SANITIZE_STRING));
-    $date = date('Y-m-d H:i:s');
+    $dateCreated = date('Y-m-d H:i:s');
 
 
     if ($fileType !== 'image/gif' && $fileType !== 'image/jpg' && $fileType !== 'image/jpeg' && $fileType !== 'image/png') {
@@ -33,11 +33,10 @@ if (isset($_FILES['image'], $_POST['caption'])) {
             exit;
         }
 
-        $destination = __DIR__ . '/../../uploads/' . date('ymd') . '-' . $fileName;
-        move_uploaded_file($image['tmp_name'], $destination);
+        $destination = __DIR__ . '/../uploads/posts/' . $fileName;
 
         // Store in database
-        $query = "INSERT INTO post (user_id, caption, filename, date_created) VALUES (:user_id, :caption, :filename, :date)";
+        $query = "INSERT INTO post (user_id, caption, filename, date_created) VALUES (:user_id, :caption, :filename, :date_created)";
         $statement = $pdo->prepare($query);
 
         if (!$statement) {
@@ -47,10 +46,10 @@ if (isset($_FILES['image'], $_POST['caption'])) {
         $statement->bindParam(':user_id', $userID, PDO::PARAM_STR);
         $statement->bindParam(':caption', $caption, PDO::PARAM_STR);
         $statement->bindParam(':filename', $fileName, PDO::PARAM_STR);
-        $statement->bindParam(':date', $date, PDO::PARAM_STR);
+        $statement->bindParam(':date_created', $dateCreated, PDO::PARAM_STR);
 
         $statement->execute();
-
+        move_uploaded_file($image['tmp_name'], $destination);
         $successes[] = 'File uploaded.';
 
         if (count($successes) > 0) {
