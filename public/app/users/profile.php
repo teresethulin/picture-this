@@ -12,7 +12,7 @@ if (!isLoggedIn()) {
 $userID = (int) $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
 
-$posts = getPostsByUser((int) $userID, $pdo);
+$posts = getAllPostsByUser((int) $userID, $pdo);
 
 ?>
 

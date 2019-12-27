@@ -64,7 +64,7 @@ function getUserById(int $userID, PDO $pdo): array
  * @param PDO $pdo
  * @return array
  */
-function getPostsByUser(int $userID, PDO $pdo): array
+function getAllPostsByUser(int $userID, PDO $pdo): array
 {
     $statement = $pdo->prepare('SELECT * FROM post WHERE user_id = :user_id ORDER BY date_created DESC');
 
