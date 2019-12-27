@@ -32,7 +32,7 @@ $posts = getPostsByUser((int) $userID, $pdo);
 
 <section class="image-grid">
     <?php foreach ($posts as $post) : ?>
-        <img src="/uploads/<?php echo $post['filename']; ?>">
+        <img src="<?php echo "/../../uploads/" . $post['filename']; ?>">
         <p><?php echo $post['caption']; ?></p>
     <?php endforeach; ?>
 </section>

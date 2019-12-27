@@ -5,6 +5,10 @@ declare(strict_types=1);
 require __DIR__ . '/../../views/header.php';
 // require __DIR__ . '/../autoload.php';
 
+// Include user and userID
+$userID = (int) $_SESSION['user']['id'];
+$user = getUserById((int) $userID, $pdo);
+
 
 if (isset($_FILES['image'], $_POST['caption'])) {
 
@@ -29,7 +33,7 @@ if (isset($_FILES['image'], $_POST['caption'])) {
             exit;
         }
 
-        $destination = __DIR__ . '/uploads/' . date('ymd') . '-' . $fileName;
+        $destination = __DIR__ . '/../../uploads/' . date('ymd') . '-' . $fileName;
         move_uploaded_file($image['tmp_name'], $destination);
 
         // Store in database
