@@ -8,6 +8,10 @@ require __DIR__ . '/views/header.php';
 if (!isLoggedIn()) {
     redirect('/');
 }
+
+// Include user and userID
+$userID = (int) $_SESSION['user']['id'];
+$user = getUserById((int) $userID, $pdo);
 ?>
 
 <!-- Display error messages -->
@@ -41,7 +45,7 @@ if (!isLoggedIn()) {
     <div class="form-element">
 
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" value="<?php echo $_SESSION['user']['email']; ?>">
+        <input type="email" name="email" id="email" value="<?php echo $user['email']; ?>">
 
     </div>
 
@@ -56,7 +60,7 @@ if (!isLoggedIn()) {
     <div class="form-element">
 
         <label for="full_name">Full name</label>
-        <input type="text" name="full_name" id="full_name" value="<?php echo $_SESSION['user']['full_name']; ?>">
+        <input type="text" name="full_name" id="full_name" value="<?php echo $user['full_name']; ?>">
 
     </div>
 
@@ -71,7 +75,7 @@ if (!isLoggedIn()) {
     <div class="form-element">
 
         <label for="biography">Biography</label>
-        <textarea type="text" name="biography" maxlength="255" value="<?php echo $_SESSION['user']['biography']; ?>">
+        <textarea type="text" name="biography" maxlength="255" value="<?php echo $user['biography']; ?>">
         </textarea>
 
     </div>

@@ -11,6 +11,7 @@ if (!isLoggedIn()) {
 // Include user and userID
 $userID = (int) $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
+
 $postId = $_POST['id'];
 
 $posts = getAllPostsByUser((int) $userID, $pdo);

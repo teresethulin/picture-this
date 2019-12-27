@@ -9,9 +9,9 @@ if (!isLoggedIn()) {
     redirect('/');
 }
 
-// User
-$userID = $_SESSION['user']['id'];
-$user = getUserById($userID, $pdo);
+// Include user and userID
+$userID = (int) $_SESSION['user']['id'];
+$user = getUserById((int) $userID, $pdo);
 
 // Display messages
 $errors = [];
