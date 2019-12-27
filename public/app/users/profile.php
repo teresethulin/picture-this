@@ -1,27 +1,40 @@
 <?php
 
-declare(strict_types=1); ?>
+declare(strict_types=1);
 
-<?php require __DIR__ . '/../../views/header.php'; ?>
+require __DIR__ . '/../../views/header.php';
 
-<!-- Check if user is logged in before printing userdata to profile -->
+if (!isLoggedIn()) {
+    redirect('/');
+}
 
-<?php if (isLoggedIn()) : ?>
+// Include user and userID
+$userID = (int) $_SESSION['user']['id'];
+$user = getUserById((int) $userID, $pdo);
 
-    <h1>
-        <?php echo $_SESSION['user']['username']; ?>
-    </h1>
+$posts = getPostsByUser((int) $userID, $pdo);
 
-    <p>
-        <?php echo $_SESSION['user']['full_name']; ?>
-    </p>
+?>
 
-    <p>
-        <?php echo $_SESSION['user']['biography']; ?>
-    </p>
+<h1>
+    <?php echo $user['username']; ?>
+</h1>
 
-    <button class="edit-profile" type="button">Edit profile</button>
+<p>
+    <?php echo $user['full_name']; ?>
+</p>
 
-<?php endif; ?>
+<p>
+    <?php echo $user['biography']; ?>
+</p>
+
+<button class="edit-profile" type="button">Edit profile</button>
+
+<section class="image-grid">
+    <?php foreach ($posts as $post) : ?>
+        <img src="/uploads/<?php echo $post['filename']; ?>">
+        <p><?php echo $post['caption']; ?></p>
+    <?php endforeach; ?>
+</section>
 
 <?php require __DIR__ . '/../../views/footer.php'; ?>

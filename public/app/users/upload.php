@@ -2,15 +2,9 @@
 
 declare(strict_types=1);
 
-// require __DIR__ . '/../../views/header.php';
-require __DIR__ . '/../autoload.php';
+require __DIR__ . '/../../views/header.php';
+// require __DIR__ . '/../autoload.php';
 
-$userID = $_SESSION['user']['id'];
-$user = getUserById($userID, $pdo);
-
-// Display messages
-$errors = [];
-$successes = [];
 
 if (isset($_FILES['image'], $_POST['caption'])) {
 

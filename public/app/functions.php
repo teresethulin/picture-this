@@ -18,6 +18,7 @@ if (!function_exists('redirect')) {
     }
 }
 
+
 /**
  * Determine if a user is logged in
  *
@@ -32,19 +33,50 @@ function isLoggedIn()
 /**
  * Get user data by id
  *
- * @param string $userID
+ * @param int $userID
  * @param PDO $pdo
  * @return array
  */
-function getUserById(string $userID, PDO $pdo): array
+function getUserById(int $userID, PDO $pdo): array
 {
-    $statement = $pdo->prepare('SELECT * FROM user WHERE id = :userid');
+    $statement = $pdo->prepare('SELECT * FROM user WHERE id = :user_id');
 
-    $statement->bindParam(':userid', $userID, PDO::PARAM_STR);
-    $statement->execute();
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':user_id' => $userID
+    ]);
+
     $user = $statement->fetch(PDO::FETCH_ASSOC);
+
     if ($user) {
         return $user;
     }
-    return $user = [];
+}
+
+
+/**
+ * Get posts from user
+ *
+ * @param int $userID
+ * @param PDO $pdo
+ * @return array
+ */
+function getPostsByUser(int $userID, PDO $pdo): array
+{
+    $statement = $pdo->prepare('SELECT * FROM post WHERE user_id = :user_id ORDER BY date_created DESC');
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':user_id' => $userID
+    ]);
+
+    $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $posts;
 }
