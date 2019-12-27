@@ -80,3 +80,27 @@ function getAllPostsByUser(int $userID, PDO $pdo): array
 
     return $posts;
 }
+
+// /**
+//  * Get post by ID from database
+//  *
+//  * @param integer $id
+//  * @param PDO $pdo
+//  * @return array
+//  */
+// function getPostByID(int $id, PDO $pdo): array
+// {
+//     $statement = $pdo->prepare('SELECT * FROM post WHERE id = :id');
+
+//     if (!$statement) {
+//         die(var_dump($pdo->errorInfo()));
+//     }
+
+//     $statement->execute([
+//         ':id' => $id
+//     ]);
+
+//     $post = $statement->fetch(PDO::FETCH_ASSOC);
+
+//     return $post;
+// }

@@ -32,7 +32,7 @@ $posts = getAllPostsByUser((int) $userID, $pdo);
 
 <section class="image-grid">
     <?php foreach ($posts as $post) : ?>
-        <img class="post-img" src="<?php echo "../uploads/posts/" . $post['filename']; ?>">
+        <img class="post-img" src="<?php echo "../uploads/posts/" . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
         <p><?php echo $post['caption']; ?></p>
         <a class="btn btn-sm btn-danger" href="../posts/delete.php">Delete</a>
         <br>
