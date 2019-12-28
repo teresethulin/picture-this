@@ -7,7 +7,7 @@ if (!isLoggedIn()) {
 }
 ?>
 
-<form action="/app/users/upload.php" method="POST" enctype="multipart/form-data">
+<form action="/app/posts/upload.php" method="POST" enctype="multipart/form-data">
 
     <div>
 

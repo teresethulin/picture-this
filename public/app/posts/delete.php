@@ -16,6 +16,7 @@ $postId = $_POST['id'];
 
 $posts = getAllPostsByUser((int) $userID, $pdo);
 
+$errors = [];
 $successes = [];
 
 // Why is $_POST['id'] undefined?
