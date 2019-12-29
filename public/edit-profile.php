@@ -12,6 +12,7 @@ if (!isLoggedIn()) {
 // Include user and userID
 $userID = (int) $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
+$avatar = $user['avatar'];
 
 ?>
 
@@ -33,6 +34,7 @@ $user = getUserById((int) $userID, $pdo);
 
 <?php endforeach; ?>
 
+<img class="avatar" src="<?php echo ($avatar !== null) ? $user['avatar'] : "app/uploads/avatar/placeholder.png"; ?>">
 <!-- UPLOAD AVATAR -->
 <form action="app/users/avatar.php" method="POST" enctype="multipart/form-data">
     <input type="file" name="avatar" id="avatar" accept=".png, .jpg, .jpeg" required>

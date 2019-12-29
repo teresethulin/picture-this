@@ -11,12 +11,13 @@ if (!isLoggedIn()) {
 // Include user and userID
 $userID = (int) $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
+$avatar = $user['avatar'];
 
 $posts = getAllPostsByUser((int) $userID, $pdo);
 
 ?>
 
-<img class="avatar" src="<?php echo "../uploads/avatar/" . $user['avatar']; ?>">
+<img class="avatar" src="<?php echo ($avatar !== null) ? $avatar : "../uploads/avatar/placeholder.png"; ?>">
 
 <h1>
     <?php echo $user['username']; ?>
