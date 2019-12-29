@@ -17,7 +17,7 @@ $posts = getAllPostsByUser((int) $userID, $pdo);
 
 ?>
 
-<img class="avatar" src="<?php echo ($avatar !== null) ? $avatar : "../uploads/avatar/placeholder.png"; ?>">
+<img class="avatar" src="<?php echo ($avatar !== null) ? "../uploads/avatar/" . $avatar : "../uploads/avatar/placeholder.png"; ?>">
 
 <h1>
     <?php echo $user['username']; ?>

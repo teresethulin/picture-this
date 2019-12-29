@@ -8,6 +8,14 @@ if (!isLoggedIn()) {
     redirect('/');
 }
 
+// Include user and userID
+$userID = (int) $_SESSION['user']['id'];
+$user = getUserById((int) $userID, $pdo);
+
+// Display messages
+$errors = [];
+$successes = [];
+
 // Store avatar in database and save in uploads
 if (isset($_FILES['avatar'])) {
 
@@ -32,7 +40,7 @@ if (isset($_FILES['avatar'])) {
         move_uploaded_file($avatar['tmp_name'], $destination);
 
         // Store in database
-        $query = "INSERT INTO user (avatar) VALUES (:avatar)";
+        $query = "UPDATE user SET avatar = :avatar WHERE id = :userid";
         $statement = $pdo->prepare($query);
 
         if (!$statement) {
@@ -40,7 +48,8 @@ if (isset($_FILES['avatar'])) {
         }
 
         $statement->execute([
-            ':avatar' => $fileName
+            ':avatar' => $fileName,
+            ':userid' => $userID
         ]);
 
         move_uploaded_file($avatar['tmp_name'], $destination);
@@ -48,7 +57,7 @@ if (isset($_FILES['avatar'])) {
 
         if (count($successes) > 0) {
             $_SESSION['successes'] = $successes;
-            redirect('/profile.php');
+            redirect('profile.php');
             exit;
         }
     }
