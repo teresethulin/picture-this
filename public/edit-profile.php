@@ -12,6 +12,7 @@ if (!isLoggedIn()) {
 // Include user and userID
 $userID = (int) $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
+
 ?>
 
 <!-- Display error messages -->
@@ -33,8 +34,8 @@ $user = getUserById((int) $userID, $pdo);
 <?php endforeach; ?>
 
 <!-- UPLOAD AVATAR -->
-<form action="/upload.php" method="POST" enctype="multipart/form-data">
-    <input type="file" name="avatar" id="avatar" accept=".png, .jpg" required>
+<form action="app/users/avatar.php" method="POST" enctype="multipart/form-data">
+    <input type="file" name="avatar" id="avatar" accept=".png, .jpg, .jpeg" required>
     <button type="submit">Upload</button>
 </form>
 

@@ -12,16 +12,14 @@ if (!isLoggedIn()) {
 $userID = (int) $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
 
-$postId = $_POST['id'];
+$postID = $_GET['id'];
 
 $posts = getAllPostsByUser((int) $userID, $pdo);
 
 $errors = [];
 $successes = [];
 
-// Why is $_POST['id'] undefined?
-
-if (isset($_POST['id'])) {
+if (isset($_GET['id'])) {
 
     foreach ($posts as $post) {
 
@@ -38,7 +36,7 @@ if (isset($_POST['id'])) {
             }
 
             $statement->execute([
-                ':id' => $postId,
+                ':id' => $postID,
                 ':filename' => $fileName
             ]);
 

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/../../views/header.php';
-// require __DIR__ . '/../autoload.php';
+
+require __DIR__ . '/../autoload.php';
 
 // Include user and userID
 $userID = (int) $_SESSION['user']['id'];
