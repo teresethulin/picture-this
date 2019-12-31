@@ -37,8 +37,8 @@ $posts = getAllPostsByUser((int) $userID, $pdo);
     <?php foreach ($posts as $post) : ?>
         <img class="post-img" src="<?php echo "/uploads/posts/" . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
         <p><?php echo $post['caption']; ?></p>
+        <a class="btn btn-sm btn-danger" href="../posts/edit-post.php?id=<?php echo $post['id']; ?>">Edit</a>
         <a class="btn btn-sm btn-danger" href="../posts/delete.php?id=<?php echo $post['id']; ?>">Delete</a>
-        <br>
     <?php endforeach; ?>
 </section>
 
