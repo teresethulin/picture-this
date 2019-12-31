@@ -33,7 +33,7 @@ if (isset($_FILES['image'], $_POST['caption'])) {
             exit;
         }
 
-        $destination = __DIR__ . '/../uploads/posts/' . $fileName;
+        $destination = __DIR__ . '/../../uploads/posts/' . $fileName;
 
         // Store in database
         $query = "INSERT INTO post (user_id, caption, filename, date_created) VALUES (:user_id, :caption, :filename, :date_created)";

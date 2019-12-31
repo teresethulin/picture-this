@@ -17,7 +17,7 @@ $posts = getAllPostsByUser((int) $userID, $pdo);
 
 ?>
 
-<img class="avatar" src="<?php echo ($avatar !== null) ? "../uploads/avatar/" . $avatar : "../uploads/avatar/placeholder.png"; ?>">
+<img class="avatar" src="<?php echo ($avatar !== null) ? "/uploads/avatar/" . $avatar : "/uploads/avatar/placeholder.png"; ?>">
 
 <h1>
     <?php echo $user['username']; ?>
@@ -35,7 +35,7 @@ $posts = getAllPostsByUser((int) $userID, $pdo);
 
 <section class="image-grid">
     <?php foreach ($posts as $post) : ?>
-        <img class="post-img" src="<?php echo "../uploads/posts/" . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
+        <img class="post-img" src="<?php echo "/uploads/posts/" . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
         <p><?php echo $post['caption']; ?></p>
         <a class="btn btn-sm btn-danger" href="../posts/delete.php?id=<?php echo $post['id']; ?>">Delete</a>
         <br>

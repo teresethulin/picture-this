@@ -34,7 +34,7 @@ $avatar = $user['avatar'];
 
 <?php endforeach; ?>
 
-<img class="avatar" src="<?php echo ($avatar !== null) ? "app/uploads/avatar/" . $avatar : "app/uploads/avatar/placeholder.png"; ?>">
+<img class="avatar" src="<?php echo ($avatar !== null) ? "uploads/avatar/" . $avatar : "uploads/avatar/placeholder.png"; ?>">
 <!-- UPLOAD AVATAR -->
 <form action="app/users/avatar.php" method="POST" enctype="multipart/form-data">
     <input type="file" name="avatar" id="avatar" accept=".png, .jpg, .jpeg" required>
