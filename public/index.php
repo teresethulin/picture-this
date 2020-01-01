@@ -15,7 +15,7 @@ $posts = getAllPosts($pdo); ?>
     <h1><?php echo $config['title']; ?></h1>
 
     <?php foreach ($posts as $post) : ?>
-        <img class="avatar" src="<?php echo ($avatar !== null) ? "/uploads/avatar/" . $avatar : "/uploads/avatar/placeholder.png"; ?>">
+        <img class="avatar" src="<?php echo "/uploads/avatar/" . $post['avatar']; ?>">
         <h3><?php echo $post['username']; ?></h3>
         <img src="<?php echo '/uploads/posts/' . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
         <p><?php echo $post['caption']; ?></p>
