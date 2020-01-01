@@ -106,27 +106,6 @@ function getPostByID(int $postID, PDO $pdo): array
 }
 
 /**
- * Get all users from database
- *
- * @param PDO $pdo
- * @return array
- */
-function getAllUsers(PDO $pdo): array
-{
-    $statement = $pdo->prepare('SELECT * FROM user');
-
-    if (!$statement) {
-        die(var_dump($pdo->errorInfo()));
-    }
-
-    $statement->execute();
-
-    $users = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-    return $users;
-}
-
-/**
  * Get all posts from users
  *
  * @param PDO $pdo
