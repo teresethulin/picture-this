@@ -13,7 +13,7 @@ $userID = (int) $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
 $avatar = $user['avatar'];
 
-$posts = getAllPostsByUser((int) $userID, $pdo);
+$posts = getPostsByUser((int) $userID, $pdo);
 
 ?>
 
