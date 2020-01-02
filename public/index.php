@@ -18,7 +18,7 @@ $posts = getAllPosts($pdo); ?>
         <h3><?php echo $post['username']; ?></h3>
         <img class="post-img" src="<?php echo '/uploads/posts/' . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
         <p><?php echo $post['caption']; ?></p>
-        <?php if (($_SESSION['user'] === $post['user_id'])) : ?>
+        <?php if (($_SESSION['user']['id'] === $post['user_id'])) : ?>
             <a class="btn btn-sm btn-danger" href="../../edit-post.php?id=<?php echo $post['id']; ?>">Edit</a>
             <a class="btn btn-sm btn-danger" href="../posts/delete.php?id=<?php echo $post['id']; ?>">Delete</a>
         <?php endif; ?>

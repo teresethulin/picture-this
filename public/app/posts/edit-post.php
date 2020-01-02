@@ -47,7 +47,7 @@ if (isset($_POST['caption'])) {
 
             if (count($successes) > 0) {
                 $_SESSION['successes'] = $successes;
-                redirect('/app/users/profile.php');
+                redirect('/../../index.php');
                 exit;
             }
         }
