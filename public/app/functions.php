@@ -81,6 +81,7 @@ function getPostsByUser(int $userID, PDO $pdo): array
     return $posts;
 }
 
+
 /**
  * Get post by ID from database
  *
@@ -105,6 +106,7 @@ function getPostByID(int $postID, PDO $pdo): array
     return $post;
 }
 
+
 /**
  * Get all posts from users
  *
@@ -124,4 +126,30 @@ function getAllPosts(PDO $pdo): array
     $allPosts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     return $allPosts;
+}
+
+/**
+ * Check if post is liked by user
+ *
+ * @param integer $userID
+ * @param integer $postID
+ * @param PDO $pdo
+ * @return boolean
+ */
+function isLiked(int $userID, int $postID, PDO $pdo): bool
+{
+    $statement = $pdo->prepare('SELECT * FROM like WHERE user_id = :user_id AND post_id = :post_id');
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        'user_id' => $userID,
+        'post_id' => $postID
+    ]);
+
+    $isLiked = $statement->fetch(PDO::FETCH_ASSOC);
+
+    return $isLiked ? true : false;
 }

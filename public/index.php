@@ -24,11 +24,11 @@ $posts = getAllPosts($pdo); ?>
         <button class="comment">
             <i class="far fa-comment-alt"></i>
         </button>
-        <p><?php echo $post['caption']; ?></p>
         <?php if (($_SESSION['user']['id'] === $post['user_id'])) : ?>
-            <a class="btn btn-sm btn-danger" href="../../edit-post.php?id=<?php echo $post['id']; ?>">Edit</a>
-            <a class="btn btn-sm btn-danger" href="../posts/delete.php?id=<?php echo $post['id']; ?>">Delete</a>
+            <a href="../../edit-post.php?id=<?php echo $post['id']; ?>"><i class="far fa-edit"></i></a>
+            <a href="../posts/delete.php?id=<?php echo $post['id']; ?>"><i class="far fa-trash-alt"></i></a>
         <?php endif; ?>
+        <p><?php echo $post['caption']; ?></p>
         <br>
     <?php endforeach; ?>
 </article>
