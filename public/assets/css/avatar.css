@@ -2,4 +2,24 @@
   width: 10vw;
   height: 10vw;
   border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar-profile {
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@media screen and (min-width: 800px) {
+  .avatar {
+    width: 3vw;
+    height: 3vw;
+  }
+
+  .avatar-profile {
+    width: 5vw;
+    height: 5vw;
+  }
 }
