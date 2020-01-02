@@ -36,7 +36,7 @@ if (isset($_FILES['avatar'])) {
     } else {
 
         // Destination folder
-        $destination = __DIR__ . '/../uploads/avatar/' . date('ymd') . '-' . $avatar['name'];
+        $destination = __DIR__ . '/../../uploads/avatar/' . date('ymd') . '-' . $avatar['name'];
         move_uploaded_file($avatar['tmp_name'], $destination);
 
         // Store in database
