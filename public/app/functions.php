@@ -128,6 +128,7 @@ function getAllPosts(PDO $pdo): array
     return $allPosts;
 }
 
+
 /**
  * Check if post is liked by user
  *
@@ -151,5 +152,34 @@ function isLiked(int $userID, int $postID, PDO $pdo): bool
 
     $isLiked = $statement->fetch(PDO::FETCH_ASSOC);
 
-    return $isLiked ? true : false;
+    if ($isLiked) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+/**
+ * Get number of likes on post from database
+ *
+ * @param integer $postID
+ * @param PDO $pdo
+ * @return string
+ */
+function numberOfLikes(int $postID, PDO $pdo): string
+{
+    $statement = $pdo->prepare('SELECT COUNT(user_id) FROM like WHERE post_id = :post_id');
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':post_id' => $postID
+    ]);
+
+    $likes = $statement->fetch();
+
+    return $likes['COUNT(user_id)'];
 }

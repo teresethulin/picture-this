@@ -14,6 +14,9 @@ $userID = (int) $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
 $avatar = $user['avatar'];
 
+$errors = [];
+$successes = [];
+
 ?>
 
 <!-- Display error messages -->
