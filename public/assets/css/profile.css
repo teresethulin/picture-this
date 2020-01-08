@@ -1,4 +1,4 @@
-.avatar-profile {
+.profile-avatar {
   width: 10vw;
   height: 10vw;
   border-radius: 50%;
@@ -6,12 +6,7 @@
 }
 
 @media screen and (min-width: 800px) {
-  .post-avatar {
-    width: 3vw;
-    height: 3vw;
-  }
-
-  .avatar-profile {
+  .profile-avatar {
     width: 5vw;
     height: 5vw;
   }
