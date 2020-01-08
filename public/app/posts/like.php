@@ -52,7 +52,7 @@ if (isset($_POST['id'])) {
 
     header('Content-Type: application/json');
 
-    return $likes;
+    // return $likes;
 
     redirect('/');
 }

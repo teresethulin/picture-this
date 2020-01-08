@@ -81,7 +81,7 @@ $successes = [];
     <div class="form-element">
 
         <label for="biography">Biography</label>
-        <textarea type="text" name="biography" maxlength="255" value="<?php echo $user['biography']; ?>">
+        <textarea type="text" name="biography" maxlength="255"><?php echo $user['biography']; ?>
         </textarea>
 
     </div>
