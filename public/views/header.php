@@ -29,4 +29,4 @@ require __DIR__ . '/../app/successes.php';
     <?php require __DIR__ . '/top-bar.php'; ?>
     <?php require __DIR__ . '/navigation.php'; ?>
 
-    <div class="container py-5">
+    <div class="feed-container">

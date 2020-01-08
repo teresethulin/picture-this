@@ -1,4 +1,16 @@
 .navbar {
   position: fixed;
   bottom: 0;
+  width: 100%;
+}
+
+.navbar ul {
+  display: flex;
+  /* position: absolute; */
+  justify-content: space-evenly;
+}
+
+.navbar ul li {
+  position: relative;
+  width: 25%;
 }
