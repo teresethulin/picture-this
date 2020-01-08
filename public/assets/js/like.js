@@ -1,3 +1,3 @@
 "use strict";
 
-const formLike = document.querySelectorAll("form-like");
+const formLike = document.querySelectorAll(".form-like");

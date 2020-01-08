@@ -19,6 +19,7 @@ require __DIR__ . '/../app/successes.php';
     <link rel="stylesheet" href="/assets/styles/main.css">
     <link rel="stylesheet" href="/assets/css/avatar.css">
     <link rel="stylesheet" href="/assets/css/post-img.css">
+    <link rel="stylesheet" href="/assets/css/nav.css">
     <script src="https://kit.fontawesome.com/86df5cd063.js" crossorigin="anonymous"></script>
 </head>
 
