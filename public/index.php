@@ -22,7 +22,7 @@ $posts = getAllPosts($pdo); ?>
 
         <div class="post-user">
 
-            <img class="avatar" src="<?php echo ($post['avatar'] !== null) ? "/uploads/avatar/" . $post['avatar'] : "/uploads/avatar/placeholder.png"; ?>">
+            <img class="post-avatar" src="<?php echo ($post['avatar'] !== null) ? "/uploads/avatar/" . $post['avatar'] : "/uploads/avatar/placeholder.png"; ?>">
 
             <h3><?php echo $post['username']; ?></h3>
 

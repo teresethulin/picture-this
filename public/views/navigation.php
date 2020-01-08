@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar">
 
     <ul class="navbar-nav">
         <?php if (isLoggedIn()) : ?>
