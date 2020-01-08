@@ -10,51 +10,76 @@ $user = getUserById((int) $userID, $pdo);
 
 $posts = getAllPosts($pdo); ?>
 
-<article>
+<?php foreach ($posts as $post) : ?>
 
-    <?php foreach ($posts as $post) : ?>
+    <article>
+
 
         <?php $avatar = $post['avatar']; ?>
         <?php $postID = $post['id']; ?>
         <?php $likes = numberOfLikes((int) $postID, $pdo); ?>
         <?php $isLiked = isLiked((int) $userID, (int) $postID, $pdo); ?>
 
-        <img class="avatar" src="<?php echo ($post['avatar'] !== null) ? "/uploads/avatar/" . $post['avatar'] : "/uploads/avatar/placeholder.png"; ?>">
+        <div class="post-user">
 
-        <h3><?php echo $post['username']; ?></h3>
+            <img class="avatar" src="<?php echo ($post['avatar'] !== null) ? "/uploads/avatar/" . $post['avatar'] : "/uploads/avatar/placeholder.png"; ?>">
 
+            <h3><?php echo $post['username']; ?></h3>
+
+        </div>
+
+        <!-- POST IMAGE -->
         <img class="post-img" src="<?php echo '/uploads/posts/' . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
 
-        <!-- LIKE FORM -->
-        <form class="form-like" id="<?php echo $postID; ?>" action="app/posts/like.php" method="POST">
 
-            <input type="hidden" name="id" value="<?php echo $postID; ?>">
+        <!-- POST LIKE, COMMENT, EDIT, DELETE BUTTONS -->
+        <div class="post-buttons-container">
 
-            <button class="like-button" type="submit" id="<?php echo $postID; ?>">
+            <div class="post-buttons">
 
-                <i class="<?php echo ($isLiked !== true) ? "far fa-heart" : "fas fa-heart"; ?>"></i>
+                <!-- LIKE BUTTON -->
+                <form class="form-like" id="<?php echo $postID; ?>" action="app/posts/like.php" method="POST">
 
-            </button>
+                    <input type="hidden" name="id" value="<?php echo $postID; ?>">
 
-            <p><?php echo $likes; ?> likes</p>
+                    <button class="like-button" type="submit" id="<?php echo $postID; ?>">
 
-        </form>
+                        <i class="<?php echo ($isLiked !== true) ? "far fa-heart" : "fas fa-heart"; ?>"></i>
 
-        <button class="comment">
-            <i class="far fa-comment-alt"></i>
-        </button>
+                    </button>
 
-        <!-- IF POST USER EQUALS LOGGED IN USER, SHOW EDIT AND DELETE BUTTONS ON THEIR POSTS-->
-        <?php if (($_SESSION['user']['id'] === $post['user_id'])) : ?>
-            <a href="../../edit-post.php?id=<?php echo $post['id']; ?>"><i class="far fa-edit"></i></a>
-            <a href="../posts/delete.php?id=<?php echo $post['id']; ?>"><i class="far fa-trash-alt"></i></a>
-        <?php endif; ?>
+                    <!-- NUMBER OF LIKES -->
+                    <p><?php echo $likes; ?></p>
+
+                </form>
+
+
+                <button class="comment-button">
+                    <i class="far fa-comment-alt"></i>
+                </button>
+
+            </div>
+
+            <!-- IF POST USER EQUALS LOGGED IN USER, SHOW EDIT AND DELETE BUTTONS ON THEIR POSTS-->
+            <div class="edit-buttons">
+
+                <?php if (($_SESSION['user']['id'] === $post['user_id'])) : ?> <a href="../../edit-post.php?id=<?php echo $post['id']; ?>"><i class="far fa-edit"></i></a>
+                    <a href="../posts/delete.php?id=<?php echo $post['id']; ?>"><i class="far fa-trash-alt"></i></a>
+                <?php endif; ?>
+
+            </div>
+
+        </div>
 
         <p><?php echo $post['caption']; ?></p>
-        <br>
+        <p class="post-date">
+            <?php
+            $date = explode(" ", $post['date_created']);
+            echo $date[0];
+            ?></p>
 
-    <?php endforeach; ?>
 
-</article>
+    </article>
+<?php endforeach; ?>
 
 <?php require __DIR__ . '/views/footer.php'; ?>

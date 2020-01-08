@@ -1,0 +1,67 @@
+.post-user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.post-user h3 {
+  margin-left: 2vw;
+}
+
+/* flex container for all post buttons */
+.post-buttons-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 1vh;
+}
+
+/* Like and comment button container */
+.post-buttons {
+  display: flex;
+  flex-direction: row;
+  max-width: 50vw;
+  justify-content: space-evenly;
+}
+
+/* Edit post and delete post button container */
+.edit-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 10vw;
+}
+
+.post-buttons > a {
+  align-self: flex-end;
+}
+
+.form-like {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Heart icon */
+.like-button {
+  padding: 0;
+  margin-right: 1vw;
+}
+
+/* Number of likes */
+.form-like > p {
+  margin: 0;
+}
+
+.form-like,
+.form-like > p,
+.post-buttons > .comment-button {
+  align-self: flex-start;
+}
+
+.post-date {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+}

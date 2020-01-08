@@ -2,15 +2,22 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+  background: linear-gradient(
+    0deg,
+    rgba(23, 18, 17, 0.5) 0%,
+    rgba(23, 18, 17, 0) 100%
+  );
 }
 
 .navbar ul {
   display: flex;
   /* position: absolute; */
   justify-content: space-evenly;
+  background: none;
 }
 
 .navbar ul li {
   position: relative;
   width: 25%;
+  background: none;
 }
