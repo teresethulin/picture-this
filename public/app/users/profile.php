@@ -14,32 +14,41 @@ $user = getUserById((int) $userID, $pdo);
 $avatar = $user['avatar'];
 
 $posts = getPostsByUser((int) $userID, $pdo);
+$post = $posts[0];
 
 ?>
 
-<img class="profile-avatar" src="<?php echo ($avatar !== null) ? "/uploads/avatar/" . $avatar : "/uploads/avatar/placeholder.png"; ?>">
+<div class="profile-user">
 
-<h1>
-    <?php echo $user['username']; ?>
-</h1>
+    <img class="profile-avatar" src="<?php echo ($avatar !== null) ? "/uploads/avatar/" . $avatar : "/uploads/avatar/placeholder.png"; ?>">
 
-<p>
-    <?php echo $user['full_name']; ?>
-</p>
+    <h1 class="profile-username">
+        <?php echo $user['username']; ?>
+    </h1>
 
-<p>
+</div>
+
+<p class="profile-bio">
     <?php echo $user['biography']; ?>
 </p>
 
-<button class="edit-profile" type="button">Edit profile</button>
+<p class="profile-date-created">
+    Member since:
+    <?php $memberSince = explode(" ", $user['date_created']);
+    $date = date_create_from_format("Y-m-d", "$memberSince[0]");
+    echo date_format($date, "F d, Y");
+    ?></p>
+
+
+<button class="edit-profile-button" type="button">Edit profile</button>
+
+<hr>
 
 <section class="image-grid">
     <?php foreach ($posts as $post) : ?>
-        <img class="post-thumbnail" src="<?php echo "/uploads/posts/" . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
-        <a href="../../edit-post.php?id=<?php echo $post['id']; ?>"><i class="far fa-edit"></i></a>
-        <a href="../posts/delete.php?id=<?php echo $post['id']; ?>"><i class="far fa-trash-alt"></i></a>
-        <p><?php echo $post['caption']; ?></p>
-        <br>
+        <a href="post.php?id=<?php echo $post['id']; ?>">
+            <img class="post-thumbnail" src="<?php echo "/uploads/posts/" . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
+        </a>
     <?php endforeach; ?>
 </section>
 

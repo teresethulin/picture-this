@@ -1,8 +1,56 @@
+.profile-user {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+}
+
 .profile-avatar {
-  width: 10vw;
-  height: 10vw;
+  width: 15vw;
+  height: 15vw;
   border-radius: 50%;
   object-fit: cover;
+  justify-self: flex-start;
+}
+
+.profile-user > h1 {
+  margin-left: 5vw;
+}
+
+.edit-profile-button {
+  width: 100%;
+  border: 2px solid white;
+  background: transparent;
+  padding: 2vw;
+  margin-top: 2vh;
+}
+
+hr {
+  border: 1px solid white;
+  margin-top: 5vh;
+  margin-bottom: 2vh;
+}
+
+.image-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.image-grid img {
+  width: 29vw;
+  height: 29vw;
+  object-fit: cover;
+  border-radius: 5%;
+}
+
+/* Post */
+.back-button {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-bottom: 1vh;
 }
 
 @media screen and (min-width: 800px) {

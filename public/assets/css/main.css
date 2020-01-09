@@ -153,6 +153,11 @@ template {
 }
 /*# sourceMappingURL=/sm/5d8a97cdb40a6c49031b52d63494a6eca084416b5b035e5698fdc5fa0969b2c3.map */
 
+:root {
+  --smoke: #a2a09f;
+  --midnightdiner: #171211;
+}
+
 * {
   font-family: "brandon-grotesque", sans-serif;
   font-weight: 400;
@@ -166,7 +171,7 @@ html {
 }
 
 body {
-  background-color: #171211;
+  background-color: var(--midnightdiner);
 }
 
 a {

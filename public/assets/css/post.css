@@ -19,6 +19,7 @@
 .post-img {
   width: 100%;
   height: auto;
+  border-radius: 5%;
 }
 
 /* Flex container for all post buttons */
