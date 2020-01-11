@@ -143,4 +143,11 @@ $successes = [];
 
     </form>
 
+    <div class="form-element">
+        <h2>
+            Sign out
+        </h2>
+        <a class="nav-link" href="/app/users/logout.php"><i class="fas fa-sign-out-alt"></i></a>
+    </div>
+
 </section>
