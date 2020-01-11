@@ -157,8 +157,6 @@ template {
   --purplerain: #9ea1b2;
   --focus: #737890;
   --shadow: #ced0d8;
-
-  /* --smoke: #a2a09f; */
   --midnightdiner: #171211;
 }
 
@@ -175,7 +173,6 @@ html {
 }
 
 body {
-  /* background-color: var(--purplerain); */
 }
 
 a {
@@ -200,7 +197,8 @@ ul li {
   min-height: 12vw;
   justify-content: center;
   align-items: center;
-  background-color: #171211;
+  background-color: #fff;
+  box-shadow: 2px 2px 3px var(--shadow);
 }
 
 article {
@@ -215,4 +213,5 @@ button {
   color: var(--purplerain);
   background-color: #fff;
   box-shadow: 5px 5px 18px var(--shadow);
+  cursor: pointer;
 }

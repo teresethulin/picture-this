@@ -1,0 +1,30 @@
+form,
+.form-element {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2vh;
+  margin-bottom: 3vh;
+}
+
+input.rounded,
+textarea {
+  border: 1px solid var(--shadow);
+  width: 90vw;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -moz-box-shadow: 2px 2px 3px var(--shadow) content-box;
+  -webkit-box-shadow: 2px 2px 3px var(--shadow) content-box;
+  box-shadow: 2px 2px 3px var(--shadow) content-box;
+  margin: 5vw;
+  padding: 1vw 5vw;
+  outline: 0;
+  -webkit-appearance: none;
+}
+
+input.rounded:focus,
+textarea:focus {
+  border-color: var(--focus);
+}

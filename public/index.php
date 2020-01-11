@@ -20,7 +20,7 @@ $posts = getAllPosts($pdo); ?>
         <?php $likes = numberOfLikes((int) $postID, $pdo); ?>
         <?php $isLiked = isLiked((int) $userID, (int) $postID, $pdo); ?>
 
-        <div class="post-user">
+        <div class="post-user-container">
 
             <img class="post-avatar" src="<?php echo ($post['avatar'] !== null) ? "/uploads/avatar/" . $post['avatar'] : "/uploads/avatar/placeholder.png"; ?>">
 
@@ -46,13 +46,12 @@ $posts = getAllPosts($pdo); ?>
 
                         <i class="<?php echo ($isLiked !== true) ? "far fa-heart" : "fas fa-heart"; ?>"></i>
 
+                        <!-- NUMBER OF LIKES -->
+                        <?php echo $likes; ?>
+
                     </button>
 
-                    <!-- NUMBER OF LIKES -->
-                    <p><?php echo $likes; ?></p>
-
                 </form>
-
 
                 <button class="comment-button">
                     <i class="far fa-comment-alt"></i>

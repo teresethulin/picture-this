@@ -49,8 +49,7 @@ $successes = [];
     <div class="form-element">
 
         <label for="caption">caption</label>
-        <textarea type="text" name="caption" maxlength="255" value="<?php echo $post['caption']; ?>">
-        </textarea>
+        <textarea type="text" name="caption" maxlength="255"><?php echo $post['caption']; ?></textarea>
 
     </div>
 
