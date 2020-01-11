@@ -154,7 +154,11 @@ template {
 /*# sourceMappingURL=/sm/5d8a97cdb40a6c49031b52d63494a6eca084416b5b035e5698fdc5fa0969b2c3.map */
 
 :root {
-  --smoke: #a2a09f;
+  --purplerain: #9ea1b2;
+  --focus: #737890;
+  --shadow: #ced0d8;
+
+  /* --smoke: #a2a09f; */
   --midnightdiner: #171211;
 }
 
@@ -162,7 +166,7 @@ template {
   font-family: "brandon-grotesque", sans-serif;
   font-weight: 400;
   font-style: normal;
-  color: #ffffff;
+  color: var(--purplerain);
   box-sizing: border-box;
 }
 
@@ -171,7 +175,7 @@ html {
 }
 
 body {
-  background-color: var(--midnightdiner);
+  /* background-color: var(--purplerain); */
 }
 
 a {
@@ -201,4 +205,14 @@ ul li {
 
 article {
   margin-bottom: 5vh;
+}
+
+button {
+  width: 60vw;
+  padding: 4vw;
+  border-radius: 20vw;
+  border: 2px solid var(--purplerain);
+  color: var(--purplerain);
+  background-color: #fff;
+  box-shadow: 5px 5px 18px var(--shadow);
 }

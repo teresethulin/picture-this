@@ -21,7 +21,7 @@ $successes = [];
 // UPDATE USER BIOGRAPHY
 if (isset($_POST['biography'])) {
 
-    $biography = filter_var($_POST['biography'], FILTER_SANITIZE_STRING);
+    $biography = trim(filter_var($_POST['biography'], FILTER_SANITIZE_STRING));
 
     $query = 'UPDATE user SET biography = :biography WHERE id = :userid';
     $statement = $pdo->prepare($query);
