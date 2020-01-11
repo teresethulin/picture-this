@@ -18,29 +18,32 @@ $post = $posts[0];
 
 ?>
 
-<div class="profile-user">
+<div class="profile-top-container">
 
     <img class="profile-avatar" src="<?php echo ($avatar !== null) ? "/uploads/avatar/" . $avatar : "/uploads/avatar/placeholder.png"; ?>">
 
-    <h1 class="profile-username">
-        <?php echo $user['username']; ?>
-    </h1>
+    <div class="profile-user">
+
+        <h1 class="profile-username">
+            <?php echo $user['username']; ?>
+        </h1>
+
+        <p class="profile-date-created">
+            Member since:
+            <?php $memberSince = explode(" ", $user['date_created']);
+            $date = date_create_from_format("Y-m-d", "$memberSince[0]");
+            echo date_format($date, "F d, Y");
+            ?></p>
+
+        <button class="edit-profile-button" type="button">Edit profile</button>
+
+    </div>
 
 </div>
 
 <p class="profile-bio">
     <?php echo $user['biography']; ?>
 </p>
-
-<p class="profile-date-created">
-    Member since:
-    <?php $memberSince = explode(" ", $user['date_created']);
-    $date = date_create_from_format("Y-m-d", "$memberSince[0]");
-    echo date_format($date, "F d, Y");
-    ?></p>
-
-
-<button class="edit-profile-button" type="button">Edit profile</button>
 
 <hr>
 

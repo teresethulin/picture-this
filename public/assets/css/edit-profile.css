@@ -11,19 +11,11 @@
   border-radius: 50%;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2vh;
-  margin-bottom: 5vh;
-}
-
+form,
 .form-element {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around; */
+  justify-content: center;
   align-items: center;
   margin-top: 2vh;
   margin-bottom: 3vh;

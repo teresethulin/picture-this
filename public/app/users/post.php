@@ -23,7 +23,7 @@ $isLiked = isLiked((int) $userID, (int) $postID, $pdo);
 
 <section>
 
-    <div class="back-button">
+    <div class="post-back-button">
         <a href="profile.php?id=<?php echo $user['id']; ?>"><i class="fas fa-times fa-2x"></i></a>
     </div>
 

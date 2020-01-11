@@ -108,9 +108,7 @@ $successes = [];
             </h2>
 
             <label for="biography">Fill in your profile biography</label>
-            <textarea type="text" class="rounded" name="biography" maxlength="255">
-                <?php echo $user['biography']; ?>
-        </textarea>
+            <textarea type="text" class="rounded" name="biography" maxlength="255"><?php echo $user['biography']; ?></textarea>
 
             <button type="submit" class="save-button">Save biography</button>
 

@@ -1,8 +1,25 @@
-.profile-user {
+.profile-top-container {
   display: flex;
   flex-direction: row;
-  width: 100%;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.profile-user {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.profile-user > h1 {
+  margin: 0;
+}
+
+.profile-user p {
+  color: var(--shadow);
+  font-size: small;
 }
 
 .profile-avatar {
@@ -13,16 +30,12 @@
   justify-self: flex-start;
 }
 
-.profile-user > h1 {
-  margin-left: 5vw;
-}
-
 .edit-profile-button {
   width: 100%;
-  border: 2px solid white;
-  background: transparent;
-  padding: 2vw;
-  margin-top: 2vh;
+  height: 5vh;
+  padding: 1vw 3vh;
+  margin-top: 1vh;
+  margin-bottom: 3vh;
 }
 
 hr {
@@ -44,8 +57,7 @@ hr {
   border-radius: 5%;
 }
 
-/* Post */
-.back-button {
+.post-back-button {
   display: flex;
   width: 100%;
   flex-direction: row;
