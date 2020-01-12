@@ -1,8 +1,13 @@
+.feed-container {
+  margin-top: 4vh;
+}
+
 .profile-top-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
+  margin: 5vh 5vw;
 }
 
 .profile-user {
@@ -23,8 +28,8 @@
 }
 
 .profile-avatar {
-  width: 15vw;
-  height: 15vw;
+  width: 20vw;
+  height: 20vw;
   border-radius: 50%;
   object-fit: cover;
   justify-self: flex-start;
@@ -36,6 +41,10 @@
   padding: 1vw 3vh;
   margin-top: 1vh;
   margin-bottom: 3vh;
+}
+
+.profile-bio {
+  margin: 0 5vw;
 }
 
 hr {

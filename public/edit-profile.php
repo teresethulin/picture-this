@@ -39,19 +39,19 @@ $successes = [];
 
 <section class="edit-container">
 
-    <img class="edit-avatar" src="<?php echo ($avatar !== null) ? "uploads/avatar/" . $avatar : "uploads/avatar/placeholder.png"; ?>">
+    <img class="edit-avatar" id="output" src="<?php echo ($avatar !== null) ? "uploads/avatar/" . $avatar : "uploads/avatar/placeholder.png"; ?>">
 
     <!-- UPLOAD AVATAR -->
     <form class="form-avatar" action="app/users/avatar.php" method="POST" enctype="multipart/form-data">
 
-        <div class="form-element">
+        <div class="form-element column">
 
             <h2>
                 Profile Picture
             </h2>
 
             <label for="avatar">Choose new profile picture</label>
-            <input type="file" class="rounded" name="avatar" id="avatar" accept=".png, .jpg, .jpeg" required>
+            <input type="file" class="rounded" name="avatar" id="avatar" accept=".png, .jpg, .jpeg" required onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
 
             <button type="submit" class="save-button">Upload profile picture</button>
 
@@ -63,7 +63,7 @@ $successes = [];
     <!-- UPDATE EMAIL -->
     <form class="form-email" action="app/users/email.php" method="post">
 
-        <div class="form-element">
+        <div class="form-element column">
 
             <h2>
                 Email
@@ -82,7 +82,7 @@ $successes = [];
     <!-- UPDATE NAME -->
     <form class="form-fullname" action="app/users/name.php" method="post">
 
-        <div class="form-element">
+        <div class="form-element column">
 
             <h2>
                 Name
@@ -101,7 +101,7 @@ $successes = [];
     <!-- UPDATE BIOGRAPHY -->
     <form class="form-bio" action="app/users/biography.php" method="post">
 
-        <div class="form-element">
+        <div class="form-element column">
 
             <h2>
                 Biography
@@ -120,7 +120,7 @@ $successes = [];
     <!-- UPDATE PASSWORD -->
     <form class="form-password" action="app/users/password.php" method="post">
 
-        <div class="form-element">
+        <div class="form-element column">
 
             <h2>
                 Change password
@@ -132,22 +132,24 @@ $successes = [];
             <input type="password" class="rounded" name="password">
 
             <!-- NEW PASSWORD -->
-            <div class="form-element">
 
-                <label for="new-password">New password</label>
-                <input type="password" class="rounded" name="new-password">
+            <label for="new-password">New password</label>
+            <input type="password" class="rounded" name="new-password">
 
-                <button type="submit" class="save-button">Save password</button>
+            <button type="submit" class="save-button">Save password</button>
 
-            </div>
+        </div>
 
     </form>
 
-    <div class="form-element">
+    <div class="form-element column">
+
         <h2>
             Sign out
         </h2>
+
         <a class="nav-link" href="/app/users/logout.php"><i class="fas fa-sign-out-alt"></i></a>
+
     </div>
 
 </section>

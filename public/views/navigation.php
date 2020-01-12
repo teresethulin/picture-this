@@ -4,7 +4,7 @@
         <?php if (isLoggedIn()) : ?>
 
             <li>
-                <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/index.php' ? 'active' : ''; ?>" href="/index.php"><i class="fas fa-camera-retro"></i></a>
+                <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/index.php' ? 'active' : ''; ?>" href="/index.php"><i class="fas fa-glasses"></i></a>
             </li>
 
             <li>

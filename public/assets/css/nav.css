@@ -2,17 +2,33 @@
   position: fixed;
   bottom: 0;
   width: 100vw;
+  height: auto;
   background-color: #fff;
+  color: #ced0d8;
+  box-shadow: -2px -2px 3px var(--lightshadow);
+  z-index: 5;
 }
 
 .navbar ul {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   background: none;
 }
 
 .navbar ul li {
-  /* position: relative; */
-  /* width: 25%; */
   background: none;
+}
+
+li img {
+  width: auto;
+  height: 16px;
+}
+
+i {
+  color: var(--shadow);
+}
+
+.active {
+  color: black;
 }

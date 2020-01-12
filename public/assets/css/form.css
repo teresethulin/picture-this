@@ -1,11 +1,6 @@
-form,
 .form-element {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2vh;
-  margin-bottom: 3vh;
+  margin-top: 3vh;
+  margin-bottom: 10vh;
 }
 
 input.rounded,
@@ -27,4 +22,13 @@ textarea {
 input.rounded:focus,
 textarea:focus {
   border-color: var(--focus);
+}
+
+textarea {
+  height: 18vh;
+}
+
+label {
+  margin-top: 2vh;
+  margin-bottom: 1vh;
 }

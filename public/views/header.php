@@ -28,7 +28,7 @@ require __DIR__ . '/../app/successes.php';
 </head>
 
 <body>
-    <?php require __DIR__ . '/top-bar.php'; ?>
+    <!-- <?php require __DIR__ . '/top-bar.php'; ?> -->
     <?php require __DIR__ . '/navigation.php'; ?>
 
-    <div class="feed-container">
+
