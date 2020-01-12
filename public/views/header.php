@@ -2,8 +2,8 @@
 // Always start by loading the default application setup.
 require __DIR__ . '/../app/autoload.php';
 
-require __DIR__ . '/../app/errors.php';
-require __DIR__ . '/../app/successes.php';
+// require __DIR__ . '/../app/errors.php';
+// require __DIR__ . '/../app/successes.php';
 
 ?>
 
@@ -28,6 +28,26 @@ require __DIR__ . '/../app/successes.php';
 </head>
 
 <body>
+
+
+    <?php if (isError()) : ?>
+
+        <p class="alert-error">
+            <?php echo $_SESSION['error']; ?>
+        </p>
+
+        <?php unset($_SESSION['error']); ?>
+
+    <?php endif; ?>
+
+    <?php if (isSuccess()) : ?>
+
+        <p class="alert-success">
+            <?php echo $_SESSION['success']; ?>
+        </p>
+
+        <?php unset($_SESSION['success']); ?>
+
+    <?php endif; ?>
+
     <!-- <?php require __DIR__ . '/top-bar.php'; ?> -->
-
-

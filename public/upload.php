@@ -5,7 +5,16 @@ require __DIR__ . '/views/header.php';
 if (!isLoggedIn()) {
     redirect('/');
 }
+
 ?>
+
+<?php if (isError()) : ?>
+
+    <p class="alert-error">
+        <?php echo $_SESSION['error']; ?>
+    </p>
+
+<?php endif; ?>
 
 <form class="column" action="/app/posts/upload.php" method="POST" enctype="multipart/form-data">
 

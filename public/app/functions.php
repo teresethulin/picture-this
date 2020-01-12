@@ -29,6 +29,31 @@ function isLoggedIn()
     return isset($_SESSION['user']);
 }
 
+/**
+ * Checks for errors in $_SESSION and prints them. Then unsets $_SESSION['error']
+ *
+ * @return void
+ */
+function isError()
+{
+    if (isset($_SESSION['error'])) {
+        return true;
+    }
+    return false;
+}
+
+/**
+ * Checks for successes in $_SESSION and prints them. Then unsets $_SESSION['success']
+ *
+ * @return void
+ */
+function isSuccess()
+{
+    if (isset($_SESSION['success'])) {
+        return true;
+    }
+    return false;
+}
 
 /**
  * Get user data by id
