@@ -12,7 +12,7 @@
             </li>
 
             <li>
-                <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/profile.php' ? 'active' : ''; ?>" href="/../app/users/profile.php"><i class="far fa-user"></i></a>
+                <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/app/users/profile.php' ? 'active' : ''; ?>" href="/../app/users/profile.php"><i class="far fa-user"></i></a>
             </li>
 
         <?php endif; ?>

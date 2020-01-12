@@ -29,6 +29,6 @@ i {
   color: var(--shadow);
 }
 
-.active {
-  color: black;
+.active i {
+  color: var(--focus);
 }
