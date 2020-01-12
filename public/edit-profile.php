@@ -153,3 +153,5 @@ $successes = [];
     </div>
 
 </section>
+
+<?php require __DIR__ . '/views/footer.php'; ?>

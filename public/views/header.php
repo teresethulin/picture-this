@@ -29,6 +29,5 @@ require __DIR__ . '/../app/successes.php';
 
 <body>
     <!-- <?php require __DIR__ . '/top-bar.php'; ?> -->
-    <?php require __DIR__ . '/navigation.php'; ?>
 
 

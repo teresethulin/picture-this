@@ -1,12 +1,18 @@
 <?php require __DIR__ . '/views/header.php'; ?>
 
-<form action="app/users/login.php" method="post">
-    <div>
-        <input type="text" name="username" id="username" placeholder="Username" required>
-        <input type="text" name="password" id="password" placeholder="Password" required>
-    </div>
+<section class="column splash">
 
-    <button type="submit">Log in</button>
-</form>
+    <h1>
+        Picture This
+    </h1>
 
-<?php require __DIR__ . '/views/footer.php'; ?>
+    <form class="column" action="app/users/login.php" method="post">
+        <div class="form-element">
+            <input type="text" class="rounded" name="username" id="username" placeholder="Username" required>
+            <input type="text" class="rounded" name="password" id="password" placeholder="Password" required>
+        </div>
+
+        <button type="submit">Log in</button>
+    </form>
+
+</section>

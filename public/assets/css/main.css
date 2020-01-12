@@ -234,3 +234,8 @@ button {
   justify-content: center;
   align-items: center;
 }
+
+.splash {
+  background-color: var(--purplerain);
+  height: 100vh;
+}
