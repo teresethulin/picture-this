@@ -14,7 +14,7 @@ $user = getUserById((int) $userID, $pdo);
 
 $postID = $_GET['id'];
 
-$posts = getAllPostsByUser((int) $userID, $pdo);
+$posts = getPostsByUser((int) $userID, $pdo);
 
 $errors = [];
 $successes = [];

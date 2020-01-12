@@ -64,7 +64,7 @@ $posts = getAllPosts($pdo); ?>
                 <div class="edit-buttons">
 
                     <?php if (($_SESSION['user']['id'] === $post['user_id'])) : ?> <a href="../../edit-post.php?id=<?php echo $post['id']; ?>"><i class="far fa-edit"></i></a>
-                        <a href="../posts/delete.php?id=<?php echo $post['id']; ?>"><i class="far fa-trash-alt"></i></a>
+                        <a href="app/posts/delete.php?id=<?php echo $post['id']; ?>"><i class="far fa-trash-alt"></i></a>
                     <?php endif; ?>
 
                 </div>
