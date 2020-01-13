@@ -1,0 +1,82 @@
+.alert-error,
+.alert-success {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 2;
+  width: 100vw;
+  height: auto;
+  margin: 0;
+  padding: 3vh 5vw;
+  line-height: 1.4rem;
+}
+
+.alert-error {
+  background-color: var(--error);
+}
+
+.alert-success {
+  background-color: var(--success);
+  animation: fade ease-in-out 4s;
+  -webkit-animation: fade ease-in-out 4s;
+  -moz-animation: fade ease-in-out 4s;
+  -o-animation: fade ease-in-out 4s;
+  -ms-animation: fade ease-in-out 4s;
+  transition-delay: 3s;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+}
+
+.alert-error p,
+.alert-success p {
+  color: #fff;
+  margin: 0;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-o-keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-ms-keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

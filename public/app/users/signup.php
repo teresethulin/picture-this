@@ -10,10 +10,10 @@ if (isset($_POST['username'], $_POST['full_name'], $_POST['email'], $_POST['pass
     $fullName = filter_var($_POST['full_name'], FILTER_SANITIZE_STRING);
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-    $errors = [];
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = 'Please fill in a valid email.';
+        $_SESSION['error'] = 'Please fill in a valid email.';
+        redirect('/signup.php');
     }
 
     $statement = $pdo->prepare('SELECT email FROM user WHERE email = :email');
@@ -22,13 +22,8 @@ if (isset($_POST['username'], $_POST['full_name'], $_POST['email'], $_POST['pass
     $emailExists = $statement->fetch(PDO::FETCH_ASSOC);
 
     if ($emailExists) {
-        $errors[] = "There's already a registered user with this email.";
-    }
-
-    if (count($errors) > 0) {
-        $_SESSION['errors'] = $errors;
+        $_SESSION['error'] = "There's already a registered user with this email.";
         redirect('/signup.php');
-        exit;
     }
 
     $query = "INSERT INTO user (username, full_name, email, password, date_created) VALUES (:username, :full_name, :email, :password, date('now'))";

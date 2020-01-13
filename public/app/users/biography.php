@@ -9,10 +9,8 @@ if (!isLoggedIn()) {
     redirect('/');
 }
 
-// Include user and userID
 $userID = (int) $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
-
 
 // UPDATE USER BIOGRAPHY
 if (isset($_POST['biography'])) {
@@ -38,5 +36,3 @@ if (isset($_POST['biography'])) {
     $_SESSION['success'] = "Biography updated.";
     redirect('profile.php');
 }
-
-// redirect('/edit-profile.php');

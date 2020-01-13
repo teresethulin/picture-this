@@ -8,13 +8,8 @@ if (!isLoggedIn()) {
     redirect('/');
 }
 
-// Include user and userID
 $userID = (int) $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
-
-// Display messages
-$errors = [];
-$successes = [];
 
 // Store avatar in database and save in uploads
 if (isset($_FILES['avatar'])) {
@@ -25,14 +20,13 @@ if (isset($_FILES['avatar'])) {
     $fileType = $avatar['type'];
     $fileSize = $avatar['size'];
 
-    // Display messages
-    $errors = [];
-    $successes = [];
 
     if ($fileType !== 'image/jpg' && $fileType !== 'image/jpeg' && $fileType !== 'image/png') {
-        $errors[] = 'The ' . $fileType . ' file extension is not allowed. Please use jpg, jpeg, or png.';
+        $_SESSION['error'] = 'The ' . $fileType . ' file extension is not allowed. Please use jpg, jpeg, or png.';
+        redirect('/../edit-profile.php');
     } elseif ($fileSize >= 1000000) {
-        $errors[] = 'The uploaded file ' . $fileName . ' exceeded the filesize limit of 1MB (' . $fileSize . ' ). Please resize or upload another image.';
+        $_SESSION['error'] = 'The uploaded file ' . $avatar['name'] . ' exceeded the filesize limit of 1MB ( ' . $fileSize . ' ). Please resize or upload another image.';
+        redirect('/../edit-profile.php');
     } else {
 
         // Destination folder
@@ -53,19 +47,9 @@ if (isset($_FILES['avatar'])) {
         ]);
 
         move_uploaded_file($avatar['tmp_name'], $destination);
-        $successes[] = 'Avatar updated.';
+        $_SESSION['success'] = 'Avatar updated.';
 
-        if (count($successes) > 0) {
-            $_SESSION['successes'] = $successes;
-            redirect('profile.php');
-            exit;
-        }
-    }
-    // If errors, display error message and redirect user
-    if (count($errors) > 0) {
-        $_SESSION['errors'] = $errors;
-        redirect('/../edit-profile.php');
-        exit;
+        redirect('profile.php');
     }
 }
 

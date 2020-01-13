@@ -16,8 +16,6 @@ $postID = $_GET['id'];
 
 $posts = getPostsByUser((int) $userID, $pdo);
 
-$errors = [];
-$successes = [];
 
 if (isset($_GET['id'])) {
 
@@ -43,13 +41,8 @@ if (isset($_GET['id'])) {
             // Remove file from uploads folder
             unlink(__DIR__ . '/../uploads/posts/' . $fileName);
 
-            $successes[] = 'Your post was deleted.';
-
-            if (count($successes) > 0) {
-                $_SESSION['successes'] = $successes;
-                redirect('/app/users/profile.php');
-                exit;
-            }
+            $_SESSION['success'] = 'Your post was deleted.';
+            redirect('/app/users/profile.php');
         }
     }
 }

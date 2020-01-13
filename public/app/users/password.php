@@ -9,14 +9,8 @@ if (!isLoggedIn()) {
     redirect('/');
 }
 
-// Include user and userID
 $userID = (int) $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
-
-// Display messages
-$errors = [];
-$successes = [];
-
 
 // UPDATE USER PASSWORD
 if (isset($_POST['password'], $_POST['new-password'])) {
@@ -25,15 +19,8 @@ if (isset($_POST['password'], $_POST['new-password'])) {
     // Verify entered password
     if (!password_verify($password, $user['password'])) {
 
-        $errors[] = 'Please fill in a valid password.';
-    }
-
-    // If errors, display error message and redirect user
-    if (count($errors) > 0) {
-
-        $_SESSION['errors'] = $errors;
+        $_SESSION['error'] = 'Please fill in a valid password.';
         redirect('/edit-profile.php');
-        exit;
     }
 
     // Encrypt and hash the new password
@@ -55,12 +42,6 @@ if (isset($_POST['password'], $_POST['new-password'])) {
     ]);
 
     // Display confirmation
-    $successes[] = "Password changed.";
-
-    if (count($successes) > 0) {
-
-        $_SESSION['successes'] = $successes;
-        redirect('/edit-profile.php');
-        exit;
-    }
+    $_SESSION['success'] = "Password changed.";
+    redirect('/edit-profile.php');
 }

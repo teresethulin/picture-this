@@ -9,33 +9,11 @@ if (!isLoggedIn()) {
     redirect('/');
 }
 
-// Include user and userID
 $userID = (int) $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
 $avatar = $user['avatar'];
 
-$errors = [];
-$successes = [];
-
 ?>
-
-<!-- Display error messages -->
-<?php foreach ($errors as $error) : ?>
-
-    <div class="alert-error" role="alert">
-        <?php echo $error; ?>
-    </div>
-
-<?php endforeach; ?>
-
-<!-- Display confirmation of save success -->
-<?php foreach ($successes as $success) : ?>
-
-    <div class="alert-success" role="alert">
-        <?php echo $success; ?>
-    </div>
-
-<?php endforeach; ?>
 
 <section class="edit-container">
 

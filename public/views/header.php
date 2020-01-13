@@ -23,31 +23,38 @@ require __DIR__ . '/../app/autoload.php';
     <link rel="stylesheet" href="/assets/css/nav.css">
     <link rel="stylesheet" href="/assets/css/post.css">
     <link rel="stylesheet" href="/assets/css/profile.css">
+    <link rel="stylesheet" href="/assets/css/alert.css">
     <link rel="stylesheet" href="/assets/css/edit-profile.css">
     <script src="https://kit.fontawesome.com/86df5cd063.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
-
     <?php if (isError()) : ?>
 
-        <p class="alert-error">
-            <?php echo $_SESSION['error']; ?>
-        </p>
+        <div class="alert-error">
+
+            <p>
+                <?php echo $_SESSION['error']; ?>
+            </p>
+
+        </div>
 
         <?php unset($_SESSION['error']); ?>
 
     <?php endif; ?>
 
+
     <?php if (isSuccess()) : ?>
 
-        <p class="alert-success">
-            <?php echo $_SESSION['success']; ?>
-        </p>
+        <div class="alert-success">
+
+            <p>
+                <?php echo $_SESSION['success']; ?>
+            </p>
+
+        </div>
 
         <?php unset($_SESSION['success']); ?>
 
     <?php endif; ?>
-
-    <!-- <?php require __DIR__ . '/top-bar.php'; ?> -->

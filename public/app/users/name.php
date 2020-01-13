@@ -9,14 +9,8 @@ if (!isLoggedIn()) {
     redirect('/');
 }
 
-// Include user and userID
 $userID = (int) $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
-
-// Display messages
-$errors = [];
-$successes = [];
-
 
 // UPDATE USER FULL NAME
 if (isset($_POST['full_name'])) {
@@ -38,13 +32,7 @@ if (isset($_POST['full_name'])) {
 
     $_SESSION['user']['full_name'] = $fullName;
 
-    // Display confirmation
-    $successes[] = "Name updated.";
+    $_SESSION['success'] = "Name updated.";
 
-    if (count($successes) > 0) {
-
-        $_SESSION['successes'] = $successes;
-        redirect('/edit-profile.php');
-        exit;
-    }
+    redirect('/edit-profile.php');
 }

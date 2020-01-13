@@ -172,9 +172,7 @@ template {
 
 html {
   scroll-behavior: smooth;
-}
-
-body {
+  overflow-x: hidden;
 }
 
 a {
@@ -195,7 +193,14 @@ ul li {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 5vh 5vw;
+}
+
+.column-space-evenly {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100vh;
 }
 
 .feed-container {
@@ -231,8 +236,10 @@ button {
   cursor: pointer;
 }
 
-h2 {
+h2,
+h3 {
   text-align: center;
+  line-height: 1.8rem;
 }
 
 .preview-img {
@@ -240,6 +247,10 @@ h2 {
   height: 25vh;
   width: auto;
   margin-top: 4vh;
+}
+
+.focus {
+  color: var(--focus);
 }
 
 .splash {

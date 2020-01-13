@@ -14,7 +14,7 @@ $user = getUserById((int) $userID, $pdo);
 $avatar = $user['avatar'];
 
 $posts = getPostsByUser((int) $userID, $pdo);
-$post = $posts[0];
+// $post = $posts[0];
 $postID = $post['id'];
 $likes = numberOfLikes((int) $postID, $pdo);
 $isLiked = isLiked((int) $userID, (int) $postID, $pdo);

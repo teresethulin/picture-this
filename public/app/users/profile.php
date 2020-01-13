@@ -8,11 +8,9 @@ if (!isLoggedIn()) {
     redirect('/');
 }
 
-// Include user and userID
 $userID = (int) $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
 $avatar = $user['avatar'];
-
 $posts = getPostsByUser((int) $userID, $pdo);
 
 ?>
@@ -32,7 +30,8 @@ $posts = getPostsByUser((int) $userID, $pdo);
             <?php $memberSince = explode(" ", $user['date_created']);
             $date = date_create_from_format("Y-m-d", "$memberSince[0]");
             echo date_format($date, "F d, Y");
-            ?></p>
+            ?>
+        </p>
 
         <button class="edit-profile-button" type="button">Edit profile</button>
 
@@ -52,7 +51,7 @@ $posts = getPostsByUser((int) $userID, $pdo);
         echo "No posts yet.";
     }; ?>
 
-    <?php $post = $posts[0]; ?>
+
 
     <?php foreach ($posts as $post) : ?>
 

@@ -4,10 +4,8 @@ if (!isLoggedIn()) {
     redirect('/');
 }
 
-// Include user and userID
 $userID = (int) $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
-
 $posts = getAllPosts($pdo); ?>
 
 <div class="feed-container">
@@ -55,7 +53,9 @@ $posts = getAllPosts($pdo); ?>
                     </form>
 
                     <button class="comment-button">
+
                         <i class="far fa-comment-alt"></i>
+
                     </button>
 
                 </div>
@@ -63,7 +63,8 @@ $posts = getAllPosts($pdo); ?>
                 <!-- IF POST USER EQUALS LOGGED IN USER, SHOW EDIT AND DELETE BUTTONS ON THEIR POSTS-->
                 <div class="edit-buttons">
 
-                    <?php if (($_SESSION['user']['id'] === $post['user_id'])) : ?> <a href="../../edit-post.php?id=<?php echo $post['id']; ?>"><i class="far fa-edit"></i></a>
+                    <?php if (($_SESSION['user']['id'] === $post['user_id'])) : ?>
+                        <a href="../../edit-post.php?id=<?php echo $post['id']; ?>"><i class="far fa-edit"></i></a>
                         <a href="app/posts/delete.php?id=<?php echo $post['id']; ?>"><i class="far fa-trash-alt"></i></a>
                     <?php endif; ?>
 
@@ -71,15 +72,20 @@ $posts = getAllPosts($pdo); ?>
 
             </div>
 
-            <p><?php echo $post['caption']; ?></p>
+            <p>
+                <?php echo $post['caption']; ?>
+            </p>
+
             <p class="post-date">
                 <?php
                 $date = explode(" ", $post['date_created']);
                 echo $date[0];
-                ?></p>
+                ?>
+            </p>
 
 
         </article>
+
     <?php endforeach; ?>
 
     <?php require __DIR__ . '/views/footer.php'; ?>
