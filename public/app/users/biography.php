@@ -13,10 +13,6 @@ if (!isLoggedIn()) {
 $userID = (int) $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
 
-// Display messages
-$errors = [];
-$successes = [];
-
 
 // UPDATE USER BIOGRAPHY
 if (isset($_POST['biography'])) {
@@ -39,14 +35,8 @@ if (isset($_POST['biography'])) {
     $_SESSION['user']['biography'] = $biography;
 
     // Display confirmation
-    $successes[] = "Biography updated.";
-
-    if (count($successes) > 0) {
-
-        $_SESSION['successes'] = $successes;
-        redirect('/edit-profile.php');
-        exit;
-    }
+    $_SESSION['success'] = "Biography updated.";
+    redirect('profile.php');
 }
 
 // redirect('/edit-profile.php');

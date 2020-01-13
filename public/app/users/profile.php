@@ -14,7 +14,6 @@ $user = getUserById((int) $userID, $pdo);
 $avatar = $user['avatar'];
 
 $posts = getPostsByUser((int) $userID, $pdo);
-$post = $posts[0];
 
 ?>
 
@@ -48,11 +47,23 @@ $post = $posts[0];
 <hr>
 
 <section class="image-grid">
+
+    <?php if (!$posts) {
+        echo "No posts yet.";
+    }; ?>
+
+    <?php $post = $posts[0]; ?>
+
     <?php foreach ($posts as $post) : ?>
+
         <a href="post.php?id=<?php echo $post['id']; ?>">
+
             <img class="post-thumbnail" src="<?php echo "/uploads/posts/" . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
+
         </a>
+
     <?php endforeach; ?>
+
 </section>
 
 <?php require __DIR__ . '/../../views/footer.php'; ?>

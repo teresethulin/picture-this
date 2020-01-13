@@ -24,10 +24,13 @@ $isLiked = isLiked((int) $userID, (int) $postID, $pdo);
 <section>
 
     <div class="post-back-button">
+
         <a href="profile.php?id=<?php echo $user['id']; ?>"><i class="fas fa-times fa-2x"></i></a>
+
     </div>
 
     <img class="post-img" src="<?php echo "/uploads/posts/" . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
+
     <!-- POST LIKE, COMMENT, EDIT, DELETE BUTTONS -->
     <div class="post-buttons-container">
 

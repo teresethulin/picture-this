@@ -16,7 +16,7 @@ if (!isLoggedIn()) {
 
 <?php endif; ?>
 
-<form class="column" action="/app/posts/upload.php" method="POST" enctype="multipart/form-data">
+<form action="/app/posts/upload.php" method="POST" enctype="multipart/form-data">
 
     <div class="column">
 

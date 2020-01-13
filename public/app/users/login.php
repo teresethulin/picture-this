@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
-require __DIR__ . '/../errors.php';
 
 
 // Check if both username and password exists in the POST request.
@@ -30,7 +29,6 @@ if (isset($_POST['username'], $_POST['password'])) {
     if (password_verify($_POST['password'], $user['password'])) {
         // If the password was valid we know that the user exists and provided
         // the correct password. We can now save the user in our session.
-        // Remember to not save the password in the session!
         unset($user['password']);
 
         $_SESSION['user'] = $user;
@@ -38,6 +36,4 @@ if (isset($_POST['username'], $_POST['password'])) {
     }
 }
 
-// We should put this redirect in the end of this file since we always want to
-// redirect the user back from this file.
 redirect('/');
