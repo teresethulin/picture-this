@@ -24,7 +24,7 @@ if (!function_exists('redirect')) {
  *
  * @return boolean
  */
-function isLoggedIn()
+function isLoggedIn(): bool
 {
     return isset($_SESSION['user']);
 }
@@ -32,9 +32,9 @@ function isLoggedIn()
 /**
  * Checks for errors in $_SESSION and prints them. Then unsets $_SESSION['error']
  *
- * @return void
+ * @return boolean
  */
-function isError()
+function isError(): bool
 {
     if (isset($_SESSION['error'])) {
         return true;
@@ -45,9 +45,9 @@ function isError()
 /**
  * Checks for successes in $_SESSION and prints them. Then unsets $_SESSION['success']
  *
- * @return void
+ * @return boolean
  */
-function isSuccess()
+function isSuccess(): bool
 {
     if (isset($_SESSION['success'])) {
         return true;
@@ -215,7 +215,7 @@ function numberOfLikes(int $postID, PDO $pdo): string
  * @param array $post
  * @return boolean
  */
-function isUser($post)
+function isUser($post): bool
 {
     if ($_SESSION['user']['id'] === $post['user_id']) {
         return true;
@@ -230,9 +230,9 @@ function isUser($post)
  * @param array $posts
  * @return void
  */
-function getCurrentPost($posts)
+function getCurrentPost($posts): void
 {
-    $postID = $_GET['id'];
+    // $postID = $_GET['id'];
     if (isset($_GET['id'])) {
         foreach ($posts as $post) {
             if ($postID === $post['id']) {

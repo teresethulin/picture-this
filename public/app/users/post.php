@@ -46,10 +46,10 @@ $isLiked = isLiked((int) $userID, (int) $postID, $pdo);
 
                     <i class="<?php echo ($isLiked !== true) ? "far fa-heart" : "fas fa-heart"; ?>"></i>
 
-                </button>
+                    <!-- NUMBER OF LIKES -->
+                    <?php echo $likes; ?>
 
-                <!-- NUMBER OF LIKES -->
-                <p><?php echo $likes; ?></p>
+                </button>
 
             </form>
 

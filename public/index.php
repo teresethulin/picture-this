@@ -63,7 +63,7 @@ $posts = getAllPosts($pdo); ?>
                 <!-- IF POST USER EQUALS LOGGED IN USER, SHOW EDIT AND DELETE BUTTONS ON THEIR POSTS-->
                 <div class="edit-buttons">
 
-                    <?php if (($_SESSION['user']['id'] === $post['user_id'])) : ?>
+                    <?php if (isUser($post)) : ?>
                         <a href="../../edit-post.php?id=<?php echo $post['id']; ?>"><i class="far fa-edit"></i></a>
                         <a href="app/posts/delete.php?id=<?php echo $post['id']; ?>"><i class="far fa-trash-alt"></i></a>
                     <?php endif; ?>

@@ -18,30 +18,7 @@ $postID = $_GET['id'];
 $posts = getPostsByUser((int) $userID, $pdo);
 $post = getPostByID((int) $postID, $pdo);
 
-$errors = [];
-$successes = [];
-
 ?>
-
-<!-- Display error messages -->
-<?php foreach ($errors as $error) : ?>
-
-    <div class="alert alert-danger">
-        <?php echo $error; ?>
-    </div>
-
-<?php endforeach; ?>
-
-<!-- Display confirmation of save success -->
-<?php foreach ($successes as $success) : ?>
-
-    <div class="alert alert-primary" role="alert">
-        <?php echo $success; ?>
-    </div>
-
-<?php endforeach; ?>
-
-
 
 <!-- UPDATE CAPTION -->
 <form action="app/posts/edit-post.php?id=<?php echo $post['id']; ?>" method="post">

@@ -256,3 +256,15 @@ h3 {
 .splash {
   height: 100vh;
 }
+
+.centered {
+  width: 90vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  background-color: transparent;
+}

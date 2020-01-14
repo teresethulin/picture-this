@@ -57,20 +57,12 @@ hr {
   margin-right: 3vw;
 }
 
-.image-grid img {
+.post-thumbnail {
   width: 29vw;
   height: 29vw;
   object-fit: cover;
   border-radius: 5%;
   margin: 0.2rem;
-}
-
-.post-back-button {
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  justify-content: flex-end;
-  margin-bottom: 1vh;
 }
 
 @media screen and (min-width: 800px) {
