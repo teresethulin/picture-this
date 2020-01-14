@@ -14,8 +14,9 @@ $user = getUserById((int) $userID, $pdo);
 $avatar = $user['avatar'];
 
 $posts = getPostsByUser((int) $userID, $pdo);
-// $post = $posts[0];
+$post = $posts[0];
 $postID = $post['id'];
+die(var_dump($posts));
 $likes = numberOfLikes((int) $postID, $pdo);
 $isLiked = isLiked((int) $userID, (int) $postID, $pdo);
 
@@ -62,7 +63,7 @@ $isLiked = isLiked((int) $userID, (int) $postID, $pdo);
         <!-- IF POST USER EQUALS LOGGED IN USER, SHOW EDIT AND DELETE BUTTONS ON THEIR POSTS-->
         <div class="edit-buttons">
 
-            <?php if (($_SESSION['user']['id'] === $post['user_id'])) : ?> <a href="../../edit-post.php?id=<?php echo $post['id']; ?>"><i class="far fa-edit"></i></a>
+            <?php if (isUser($post)) : ?> <a href="../../edit-post.php?id=<?php echo $post['id']; ?>"><i class="far fa-edit"></i></a>
                 <a href="../posts/delete.php?id=<?php echo $post['id']; ?>"><i class="far fa-trash-alt"></i></a>
             <?php endif; ?>
 

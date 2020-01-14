@@ -208,3 +208,18 @@ function numberOfLikes(int $postID, PDO $pdo): string
 
     return $likes['COUNT(user_id)'];
 }
+
+/**
+ * Checks if user is owner of post
+ *
+ * @param array $post
+ * @return boolean
+ */
+function isUser($post)
+{
+    if ($_SESSION['user']['id'] === $post['user_id']) {
+        return true;
+    } else {
+        return false;
+    }
+}

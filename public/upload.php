@@ -8,14 +8,6 @@ if (!isLoggedIn()) {
 
 ?>
 
-<!-- <?php if (isError()) : ?>
-
-    <p class="alert-error">
-        <?php echo $_SESSION['error']; ?>
-    </p>
-
-<?php endif; ?> -->
-
 <form action="/app/posts/upload.php" method="POST" enctype="multipart/form-data">
 
     <div class="column">
