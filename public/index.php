@@ -78,8 +78,8 @@ $posts = getAllPosts($pdo); ?>
 
             <p class="post-date">
                 <?php
-                $date = explode(" ", $post['date_created']);
-                echo $date[0];
+                $date = $post['date_created'];
+                echo timeSinceUploaded($date);
                 ?>
             </p>
 

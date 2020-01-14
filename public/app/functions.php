@@ -230,14 +230,44 @@ function isUser($post): bool
  * @param array $posts
  * @return void
  */
-function getCurrentPost($posts): void
+function getCurrentPost($posts)
 {
-    // $postID = $_GET['id'];
     if (isset($_GET['id'])) {
+        $postID = $_GET['id'];
         foreach ($posts as $post) {
             if ($postID === $post['id']) {
-                return $post;
+                return $postID;
             }
         }
+    }
+}
+
+if (!function_exists('timeSinceUploaded')) {
+    /**
+     * Calculates how many seconds, hours, or days since post was uploaded
+     *
+     * @param [type] $dateCreated
+     * @return string
+     */
+    function timeSinceUploaded(string $dateCreated): string
+    {
+        $now = date("Y-m-d H:i:s");
+        $uploaded = strtotime($now) - strtotime($dateCreated);
+        if ($uploaded >= 1209600) {
+            $time = floor($uploaded / 1209600) . ' WEEKS AGO';
+        } elseif ($uploaded >= 604800) {
+            $time = floor($uploaded / 604800) . ' WEEK AGO';
+        } elseif ($uploaded >= 172800) {
+            $time = floor($uploaded / 172800) . ' DAYS AGO';
+        } elseif ($uploaded >= 86400) {
+            $time = floor($uploaded / 86400) . ' DAY AGO';
+        } elseif ($uploaded >= 3600) {
+            $time = floor($uploaded / 3600) . ' HOURS AGO';
+        } elseif ($uploaded >= 60) {
+            $time = floor($uploaded / 60) . ' MINUTES AGO';
+        } else {
+            $time = 'A FEW SECONDS AGO';
+        }
+        return $time;
     }
 }
