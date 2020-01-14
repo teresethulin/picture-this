@@ -223,3 +223,21 @@ function isUser($post)
         return false;
     }
 }
+
+/**
+ * Checks if id of current post matches post id in database. If true, return post
+ *
+ * @param array $posts
+ * @return void
+ */
+function getCurrentPost($posts)
+{
+    $postID = $_GET['id'];
+    if (isset($_GET['id'])) {
+        foreach ($posts as $post) {
+            if ($postID === $post['id']) {
+                return $post;
+            }
+        }
+    }
+}
