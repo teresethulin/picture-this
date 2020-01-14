@@ -53,8 +53,9 @@
 }
 
 /* Number of likes */
-.form-like > p {
+.likes p {
   margin: 0;
+  font-size: 0.7rem;
 }
 
 .edit-buttons {

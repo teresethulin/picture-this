@@ -17,7 +17,6 @@ $posts = getAllPosts($pdo); ?>
             <?php $avatar = $post['avatar']; ?>
             <?php $postID = $post['id']; ?>
             <?php $likes = numberOfLikes((int) $postID, $pdo); ?>
-            <?php $isLiked = isLiked((int) $userID, (int) $postID, $pdo); ?>
 
             <div class="post-user-container">
 
@@ -43,10 +42,20 @@ $posts = getAllPosts($pdo); ?>
 
                         <button class="like-button" type="submit" id="<?php echo $postID; ?>">
 
-                            <i class="<?php echo ($isLiked !== true) ? "far fa-heart" : "fas fa-heart"; ?>"></i>
+                            <?php if (isLiked((int) $userID, (int) $postID, $pdo)) : ?>
+                                <i class="far fa-heart" alt="liked"></i>
+                            <?php else : ?>
+                                <i class="fas fa-heart" alt="unliked"></i>
+                            <?php endif; ?>
 
-                            <!-- NUMBER OF LIKES -->
-                            <?php echo $likes; ?>
+                            <p class="likes">
+                                <?php
+                                if ($likes === "0") {
+                                    echo ' ';
+                                } else {
+                                    echo $likes;
+                                } ?>
+                            </p>
 
                         </button>
 

@@ -81,7 +81,6 @@ function getUserById(int $userID, PDO $pdo): array
     }
 }
 
-
 /**
  * Get posts from user
  *
@@ -190,11 +189,11 @@ function isLiked(int $userID, int $postID, PDO $pdo): bool
  *
  * @param integer $postID
  * @param PDO $pdo
- * @return string
+ * @return integer
  */
-function numberOfLikes(int $postID, PDO $pdo): string
+function numberOfLikes(int $postID, PDO $pdo): int
 {
-    $statement = $pdo->prepare('SELECT COUNT(user_id) FROM like WHERE post_id = :post_id');
+    $statement = $pdo->prepare('SELECT COUNT(*) FROM like WHERE post_id = :post_id');
 
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
@@ -204,9 +203,9 @@ function numberOfLikes(int $postID, PDO $pdo): string
         ':post_id' => $postID
     ]);
 
-    $likes = $statement->fetch();
+    $likes = $statement->fetch(PDO::FETCH_ASSOC);
 
-    return $likes['COUNT(user_id)'];
+    return (int) $likes["COUNT(*)"];
 }
 
 /**
@@ -232,8 +231,8 @@ function isUser($post): bool
  */
 function getCurrentPost($posts)
 {
+    $postID = $_GET['id'];
     if (isset($_GET['id'])) {
-        $postID = $_GET['id'];
         foreach ($posts as $post) {
             if ($postID === $post['id']) {
                 return $postID;

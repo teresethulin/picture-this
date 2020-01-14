@@ -13,12 +13,6 @@ $user = getUserById((int) $userID, $pdo);
 $avatar = $user['avatar'];
 
 $posts = getPostsByUser((int) $userID, $pdo);
-$post = getCurrentPost($posts);
-
-$postID = $post['id'];
-
-$likes = numberOfLikes((int) $postID, $pdo);
-$isLiked = isLiked((int) $userID, (int) $postID, $pdo);
 
 ?>
 
@@ -59,12 +53,15 @@ $isLiked = isLiked((int) $userID, (int) $postID, $pdo);
     }; ?>
 
     <?php foreach ($posts as $post) : ?>
+        <?php $postID = $post['id'];
+        $likes = numberOfLikes((int) $postID, $pdo);
+        $isLiked = isLiked((int) $userID, (int) $postID, $pdo); ?>
 
-        <a href="#openModal">
+        <a href="#openModal<?php echo $post['id']; ?>">
             <img id="<?php echo $post['id']; ?>" class="post-thumbnail" src="<?php echo "/uploads/posts/" . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
         </a>
 
-        <div id="openModal" class="modal">
+        <div id="openModal<?php echo $post['id']; ?>" class="modal">
 
             <div>
 
@@ -72,7 +69,7 @@ $isLiked = isLiked((int) $userID, (int) $postID, $pdo);
                     <i class="fas fa-times fa-2x"></i>
                 </a>
 
-                <img class="post-img" src="<?php echo "/uploads/posts/" . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
+                <img class="post-img" id="<?php echo $post['id']; ?>" src="<?php echo "/uploads/posts/" . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
 
                 <div class="post-buttons-container">
 

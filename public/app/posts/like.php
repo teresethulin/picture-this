@@ -4,19 +4,18 @@ declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
 
+header('Content-Type: application/json');
 
 if (!isLoggedIn()) {
     redirect('/');
 }
 
-
 // Include user and userID
 $userID = (int) $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
 
-
 if (isset($_POST['id'])) {
-    $postID = $_POST['id'];
+    $postID = (int) filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
 
     if (isLiked((int) $userID, (int) $postID, $pdo)) {
 
@@ -46,15 +45,8 @@ if (isset($_POST['id'])) {
         ]);
     }
 
-    // Convert array into string with json encode
-    $encodedLikes = numberOfLikes((int) $postID, $pdo);
-    $likes = json_encode($encodedLikes);
-
-    header('Content-Type: application/json');
-
-    // return $likes;
-
-    redirect('/');
+    $likes = numberOfLikes((int) $postId, $pdo);
+    echo json_encode($likes);
 }
 
 redirect('/');
