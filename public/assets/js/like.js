@@ -25,7 +25,7 @@ likes.forEach(like => {
 
     const formData = new FormData(like);
 
-    fetch(`http://localhost:8000/app/posts/like.php`, {
+    fetch(`/../app/posts/like.php`, {
       method: "POST",
       body: formData
     })
@@ -34,7 +34,6 @@ likes.forEach(like => {
       })
       .then(json => {
         const numberOfLikes = event.target.querySelector(".likes");
-
         if (json === "0") {
           numberOfLikes.textContent = " ";
         } else {

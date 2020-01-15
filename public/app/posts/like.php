@@ -45,7 +45,7 @@ if (isset($_POST['id'])) {
         ]);
     }
 
-    $likes = numberOfLikes((int) $postId, $pdo);
+    $likes = numberOfLikes($postId, $pdo);
     echo json_encode($likes);
 }
 

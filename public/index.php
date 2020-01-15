@@ -17,7 +17,6 @@ $posts = getAllPosts($pdo); ?>
             <?php $avatar = $post['avatar']; ?>
             <?php $postID = $post['id']; ?>
             <?php $likes = numberOfLikes((int) $postID, $pdo); ?>
-
             <div class="post-user-container">
 
                 <img class="post-avatar" src="<?php echo ($post['avatar'] !== null) ? "/uploads/avatar/" . $post['avatar'] : "/uploads/avatar/placeholder.png"; ?>">
@@ -47,15 +46,14 @@ $posts = getAllPosts($pdo); ?>
                             <?php else : ?>
                                 <i class="fas fa-heart" alt="unliked"></i>
                             <?php endif; ?>
-
-                            <p class="likes">
+                            <span class="likes">
                                 <?php
                                 if ($likes === "0") {
                                     echo ' ';
                                 } else {
                                     echo $likes;
                                 } ?>
-                            </p>
+                            </span>
 
                         </button>
 
