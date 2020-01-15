@@ -4,10 +4,14 @@
   height: 100vh;
   z-index: 9;
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   top: 0;
   left: 0;
   background-color: rgb(255, 255, 255);
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.7);
   opacity: 0;
   -webkit-transition: opacity 400ms ease-in;
   -moz-transition: opacity 400ms ease-in;
@@ -21,15 +25,17 @@
   display: block;
 }
 
-.modal > div {
-  width: 90vw;
-  height: 100vh;
+.background {
+  width: 100vw;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left: 5vw;
-  margin-right: 5vw;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  background-color: #fff;
+  border: 1px solid var(--lightshadow);
 }
 
 .close-window {
@@ -42,5 +48,5 @@
 
 .close-window i {
   color: var(--focus);
-  right: 0 !important;
+  right: 0;
 }

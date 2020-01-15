@@ -63,7 +63,7 @@ $posts = getPostsByUser((int) $userID, $pdo);
 
         <div id="openModal<?php echo $post['id']; ?>" class="modal">
 
-            <div>
+            <div class="background">
 
                 <a href="#close" title="Close window" class="close-window">
                     <i class="fas fa-times fa-2x"></i>

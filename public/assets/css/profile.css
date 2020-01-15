@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  margin: 5vh 5vw;
+  padding: 5vh 5vw 0;
 }
 
 .profile-user {
@@ -41,12 +41,13 @@
 
 .profile-bio {
   margin: 0 5vw;
+  padding: 2vh 0 3vh;
 }
 
 hr {
-  border: 1px solid white;
-  margin-top: 5vh;
-  margin-bottom: 2vh;
+  border: 1px solid var(--lightshadow);
+  /* margin-top: 5vh;
+  margin-bottom: 2vh; */
 }
 
 .image-grid {
