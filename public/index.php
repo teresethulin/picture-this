@@ -66,15 +66,15 @@ $posts = getAllPosts($pdo); ?>
 
                     <?php if (isUser($post)) : ?>
 
+                        <!-- EDIT POST ICON -->
                         <a href="#openModal<?php echo $post['id']; ?>">
                             <i class="far fa-edit"></i>
                         </a>
 
-                        <a href="app/posts/delete.php?id=<?php echo $post['id']; ?>"><i class="far fa-trash-alt"></i></a>
+                        <!-- EDIT POST MODAL WINDOW -->
+                        <div id="openModal<?php echo $post['id']; ?>" class="modal column">
 
-                        <div id="openModal<?php echo $post['id']; ?>" class="modal">
-
-                            <div class="background">
+                            <div class="background column">
 
                                 <a href="#close" title="Close window" class="close-window">
                                     <i class="fas fa-times fa-2x"></i>
@@ -99,26 +99,56 @@ $posts = getAllPosts($pdo); ?>
                             </div>
 
                         </div>
-                    <?php endif; ?>
+                        <!-- END EDIT POST MODAL WINDOW -->
+
+                        <!-- DELETE POST ICON -->
+                        <a href="#openModalDelete<?php echo $post['id']; ?>">
+                            <i class="far fa-trash-alt"></i>
+                        </a>
+
+                        <!-- DELETE POST MODAL WINDOW -->
+                        <div id="openModalDelete<?php echo $post['id']; ?>" class="modal column">
+
+                            <div class="background column">
+
+                                <a href="#close" title="Close window" class="close-window">
+                                    <i class="fas fa-times fa-2x"></i>
+                                </a>
+
+                                <h2>
+                                    Are you sure you want to delete this post?
+                                </h2>
+
+                                <a href="app/posts/delete.php?id=<?php echo $post['id']; ?>">
+                                    <div class="delete-button column">
+                                        Delete post <i class="far fa-trash-alt"></i>
+                                </a>
+                            </div>
+
+                        </div>
 
                 </div>
 
+            <?php endif; ?>
+
             </div>
 
-            <p>
-                <?php echo $post['caption']; ?>
-            </p>
+</div>
 
-            <p class="post-date">
-                <?php
-                $date = $post['date_created'];
-                echo timeSinceUploaded($date);
-                ?>
-            </p>
+<p>
+    <?php echo $post['caption']; ?>
+</p>
+
+<p class="post-date">
+    <?php
+        $date = $post['date_created'];
+        echo timeSinceUploaded($date);
+    ?>
+</p>
 
 
-        </article>
+</article>
 
-    <?php endforeach; ?>
+<?php endforeach; ?>
 
-    <?php require __DIR__ . '/views/footer.php'; ?>
+<?php require __DIR__ . '/views/footer.php'; ?>

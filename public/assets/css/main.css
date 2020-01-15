@@ -155,6 +155,7 @@ template {
 
 :root {
   --main: #9ea1b2;
+  --maindarker: #8e90a0;
   --focus: #737890;
   --shadow: #ced0d8;
   --lightshadow: #e1e2e7;
@@ -166,7 +167,7 @@ template {
   font-family: "brandon-grotesque", sans-serif;
   font-weight: 400;
   font-style: normal;
-  color: var(--main);
+  color: var(--maindarker);
   box-sizing: border-box;
 }
 

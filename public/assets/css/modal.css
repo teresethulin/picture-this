@@ -4,10 +4,6 @@
   height: 100vh;
   z-index: 9;
   position: fixed;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   top: 0;
   left: 0;
   background-color: rgb(255, 255, 255);
@@ -17,6 +13,7 @@
   -moz-transition: opacity 400ms ease-in;
   transition: opacity 400ms ease-in;
   pointer-events: none;
+  overflow-y: scroll;
 }
 
 .modal:target {
@@ -28,16 +25,30 @@
 .background {
   width: 100vw;
   height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin-top: 10vh;
+  margin-bottom: 10vh;
   padding-top: 2vh;
   padding-left: 5vw;
   padding-right: 5vw;
   background-color: #fff;
-  border: 1px solid var(--lightshadow);
+  border: 2px solid var(--lightshadow);
+}
+
+.background h2 {
+  margin-top: 10vh;
+}
+
+.delete-button {
+  width: 60vw;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  padding: 4vw;
+  border-radius: 20vw;
+  border: 2px solid var(--main);
+  color: var(--main);
+  background-color: #fff;
+  box-shadow: 5px 5px 18px var(--shadow);
+  cursor: pointer;
 }
 
 .close-window {

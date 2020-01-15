@@ -19,7 +19,7 @@
 }
 
 .profile-user p {
-  color: var(--shadow);
+  color: var(--main);
   font-size: small;
 }
 
@@ -46,8 +46,7 @@
 
 hr {
   border: 1px solid var(--lightshadow);
-  /* margin-top: 5vh;
-  margin-bottom: 2vh; */
+  margin-bottom: 2vh;
 }
 
 .image-grid {
