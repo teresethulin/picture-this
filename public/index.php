@@ -45,10 +45,11 @@ $posts = getAllPosts($pdo); ?>
 
                             <i class="<?php echo ($isLiked !== true) ? "far fa-heart" : "fas fa-heart"; ?>"></i>
 
+                            <!-- NUMBER OF LIKES -->
+                            <?php echo $likes; ?>
+
                         </button>
 
-                        <!-- NUMBER OF LIKES -->
-                        <span><?php echo $likes; ?></span>
 
                     </form>
 

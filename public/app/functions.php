@@ -159,9 +159,9 @@ function getAllPosts(PDO $pdo): array
  * @param integer $userID
  * @param integer $postID
  * @param PDO $pdo
- * @return string
+ * @return boolean
  */
-function isLiked(int $userID, int $postID, PDO $pdo): string
+function isLiked(int $userID, int $postID, PDO $pdo): bool
 {
     $statement = $pdo->prepare('SELECT * FROM like WHERE user_id = :user_id AND post_id = :post_id');
 
@@ -175,32 +175,7 @@ function isLiked(int $userID, int $postID, PDO $pdo): string
     ]);
 
     $isLiked = $statement->fetch(PDO::FETCH_ASSOC);
-
-    if (!$isLiked) {
-        return "unlike";
-    } else {
-        return "like";
-    }
-}
-
-if (!function_exists('isLikedOrUnliked')) {
-    /**
-     * Checks if post is already liked or unliked, returns string
-     *
-     *@param int $userID
-     *@param int $postID
-     *@param PDO $pdo
-     *
-     * @return string
-     */
-    function isLikedOrUnliked(int $userID, int $postID, PDO $pdo): string
-    {
-        $isLikedOrUnliked = isLiked($userID, $postID, $pdo);
-        if ($isLikedOrUnliked === "unlike") {
-            return "like";
-        }
-        return "unlike";
-    }
+    return $isLiked ? true : false;
 }
 
 /**
