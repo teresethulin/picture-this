@@ -19,8 +19,6 @@ $postID = $_GET['id'];
 $posts = getPostsByUser((int) $userID, $pdo);
 $post = getPostByID((int) $postID, $pdo);
 
-$errors = [];
-$successes = [];
 
 if (isset($_POST['caption'])) {
 
@@ -43,15 +41,8 @@ if (isset($_POST['caption'])) {
                 ':caption' => $caption
             ]);
 
-            $successes[] = 'Your post was edited.';
-
-            if (count($successes) > 0) {
-                $_SESSION['successes'] = $successes;
-                redirect('/../../index.php');
-                exit;
-            }
+            $_SESSION['success'] = 'Your post was updated.';
+            redirect('/../../index.php');
         }
     }
 }
-
-// redirect('/');

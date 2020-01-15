@@ -65,8 +65,40 @@ $posts = getAllPosts($pdo); ?>
                 <div class="edit-buttons">
 
                     <?php if (isUser($post)) : ?>
-                        <a href="../../edit-post.php?id=<?php echo $post['id']; ?>"><i class="far fa-edit"></i></a>
+
+                        <a href="#openModal<?php echo $post['id']; ?>">
+                            <i class="far fa-edit"></i>
+                        </a>
+
                         <a href="app/posts/delete.php?id=<?php echo $post['id']; ?>"><i class="far fa-trash-alt"></i></a>
+
+                        <div id="openModal<?php echo $post['id']; ?>" class="modal">
+
+                            <div class="background">
+
+                                <a href="#close" title="Close window" class="close-window">
+                                    <i class="fas fa-times fa-2x"></i>
+                                </a>
+
+                                <img class="post-thumbnail" id="<?php echo $post['id']; ?>" src="<?php echo "/uploads/posts/" . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
+
+                                <!-- UPDATE CAPTION -->
+                                <form action="app/posts/edit-post.php?id=<?php echo $post['id']; ?>" method="post">
+
+                                    <div class="form-element column">
+
+                                        <label for="caption">Update caption</label>
+                                        <textarea type="text" name="caption" maxlength="255"><?php echo $post['caption']; ?></textarea>
+
+                                        <button type="submit">Save caption</button>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+                        </div>
                     <?php endif; ?>
 
                 </div>
