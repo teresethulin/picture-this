@@ -15,8 +15,13 @@ $avatar = $user['avatar'];
 
 ?>
 
+<a href="app/users/profile.php">
+    <p class="back-button">
+        <i class="fas fa-chevron-left"></i>
+        Back
+    </p>
+</a>
 <section class="edit-container">
-
     <img class="edit-avatar" id="output" src="<?php echo ($avatar !== null) ? "uploads/avatar/" . $avatar : "uploads/avatar/placeholder.png"; ?>">
 
     <!-- UPLOAD AVATAR -->

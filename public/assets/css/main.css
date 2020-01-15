@@ -206,19 +206,7 @@ ul li {
 .feed-container {
   margin-left: 5vw;
   margin-right: 5vw;
-  /* padding-top: 12vh; */
   padding-bottom: 10vh;
-}
-
-.top-bar {
-  display: flex;
-  position: fixed;
-  width: 100%;
-  min-height: 12vw;
-  justify-content: center;
-  align-items: center;
-  /* background-color: #fff; */
-  /* box-shadow: 2px 2px 3px var(--shadow); */
 }
 
 article {
@@ -267,4 +255,11 @@ h3 {
   margin-left: 5vw;
   margin-right: 5vw;
   background-color: transparent;
+}
+
+.back-button {
+  margin-left: 5vw;
+  margin-top: 0;
+  z-index: 3;
+  position: fixed;
 }
