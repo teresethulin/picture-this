@@ -18,27 +18,32 @@ icons.forEach(icon => {
   icon.addEventListener("click", toggleIcons);
 });
 
-// Number of likes request
 likes.forEach(like => {
   like.addEventListener("submit", event => {
     event.preventDefault();
 
-    const formData = new FormData(like);
+    const heartLiked = `
+        <i class="far fa-heart" alt="liked"></i>
+      `;
+    const heartNotLiked = `
+        <i class="fas fa-heart" alt="unliked"></i>
+      `;
 
-    fetch(`/../app/posts/like.php`, {
+    let likeButton = like.querySelector(".like-button");
+    let numberOfLikes = likeButton.lastElementChild;
+
+    if (likeButton.classList.contains("like")) {
+      likeButton.innerHTML = heartNotLiked;
+    } else {
+      likeButton.innerHTML = heartLiked;
+    }
+    const likeFormData = new FormData(like);
+
+    fetch("/../app/posts/like.php", {
       method: "POST",
-      body: formData
+      body: likeFormData
     })
-      .then(response => {
-        return response.json();
-      })
-      .then(json => {
-        const numberOfLikes = event.target.querySelector(".likes");
-        if (json === "0") {
-          numberOfLikes.textContent = " ";
-        } else {
-          numberOfLikes.textContent = json;
-        }
-      });
+      .then(response => response.json())
+      .then(result => (numberOfLikes.textContent = result));
   });
 });

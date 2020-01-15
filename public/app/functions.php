@@ -154,14 +154,14 @@ function getAllPosts(PDO $pdo): array
 
 
 /**
- * Check if post is liked by user
+ * Checks if post is liked by user, returns string
  *
  * @param integer $userID
  * @param integer $postID
  * @param PDO $pdo
- * @return boolean
+ * @return string
  */
-function isLiked(int $userID, int $postID, PDO $pdo): bool
+function isLiked(int $userID, int $postID, PDO $pdo): string
 {
     $statement = $pdo->prepare('SELECT * FROM like WHERE user_id = :user_id AND post_id = :post_id');
 
@@ -176,13 +176,32 @@ function isLiked(int $userID, int $postID, PDO $pdo): bool
 
     $isLiked = $statement->fetch(PDO::FETCH_ASSOC);
 
-    if ($isLiked) {
-        return true;
+    if (!$isLiked) {
+        return "unlike";
     } else {
-        return false;
+        return "like";
     }
 }
 
+if (!function_exists('isLikedOrUnliked')) {
+    /**
+     * Checks if post is already liked or unliked, returns string
+     *
+     *@param int $userID
+     *@param int $postID
+     *@param PDO $pdo
+     *
+     * @return string
+     */
+    function isLikedOrUnliked(int $userID, int $postID, PDO $pdo): string
+    {
+        $isLikedOrUnliked = isLiked($userID, $postID, $pdo);
+        if ($isLikedOrUnliked === "unlike") {
+            return "like";
+        }
+        return "unlike";
+    }
+}
 
 /**
  * Get number of likes on post from database
