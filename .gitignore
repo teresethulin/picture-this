@@ -1,2 +1,7 @@
 .DS_Store
-/Public/uploads/*
+/Public/uploads/avatar/*
+/Public/uploads/icons/*
+/Public/uploads/posts/*
+!/Public/uploads/avatar/.gitkeep
+!/Public/uploads/icons/.gitkeep
+!/Public/uploads/posts/.gitkeep
