@@ -20,16 +20,36 @@ $post = getPostByID((int) $postID, $pdo);
 
 ?>
 
-<!-- UPDATE CAPTION -->
-<form action="app/posts/edit-post.php?id=<?php echo $post['id']; ?>" method="post">
+<a href="app/users/profile.php">
+    <p class="back-button">
+        <i class="fas fa-chevron-left"></i>
+        Back
+    </p>
+</a>
 
-    <div class="form-element">
+<section class="column-space-evenly">
 
-        <label for="caption">caption</label>
-        <textarea type="text" name="caption" maxlength="255"><?php echo $post['caption']; ?></textarea>
 
-    </div>
+    <!-- UPDATE CAPTION -->
+    <form action="app/posts/edit-post.php?id=<?php echo $post['id']; ?>" method="post">
 
-    <button type="submit">Save caption</button>
+        <div class="edit-container">
 
-</form>
+
+            <h2>
+                Edit post caption
+            </h2>
+
+            <img class="post-thumbnail" id="<?php echo $post['id']; ?>" src="<?php echo "/uploads/posts/" . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
+
+            <label for="caption">Write caption here</label>
+            <textarea type="text" name="caption" maxlength="255"><?php echo $post['caption']; ?></textarea>
+
+
+            <button type="submit">Save caption</button>
+
+        </div>
+
+    </form>
+
+</section>

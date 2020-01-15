@@ -63,3 +63,7 @@
   color: var(--focus);
   right: 0;
 }
+
+.modal button {
+  margin-bottom: 5vh;
+}

@@ -21,6 +21,7 @@ $avatar = $user['avatar'];
         Back
     </p>
 </a>
+
 <section class="edit-container">
     <img class="edit-avatar" id="output" src="<?php echo ($avatar !== null) ? "uploads/avatar/" . $avatar : "uploads/avatar/placeholder.png"; ?>">
 

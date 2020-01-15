@@ -85,9 +85,12 @@ $posts = getAllPosts($pdo); ?>
                                 <!-- UPDATE CAPTION -->
                                 <form action="app/posts/edit-post.php?id=<?php echo $post['id']; ?>" method="post">
 
-                                    <div class="form-element column">
+                                    <div class="column">
 
-                                        <label for="caption">Update caption</label>
+                                        <h2>
+                                            <label for="caption">Edit Caption</label>
+                                        </h2>
+
                                         <textarea type="text" name="caption" maxlength="255"><?php echo $post['caption']; ?></textarea>
 
                                         <button type="submit">Save caption</button>
