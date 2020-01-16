@@ -43,5 +43,5 @@ if (isset($_POST['password'], $_POST['new-password'])) {
 
     // Display confirmation
     $_SESSION['success'] = "Password changed.";
-    redirect('/edit-profile.php');
+    // redirect('/edit-profile.php');
 }

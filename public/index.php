@@ -21,14 +21,14 @@ $posts = getAllPosts($pdo); ?>
 
             <div class="post-user-container">
 
-                <img class="post-avatar" src="<?php echo ($post['avatar'] !== null) ? "/uploads/avatar/" . $post['avatar'] : "/uploads/avatar/placeholder.png"; ?>">
+                <img class="post-avatar" src="<?php echo (file_exists($post['avatar'])) ? "/uploads/avatar/" . $post['avatar'] : "/uploads/avatar/placeholder.png"; ?>">
 
                 <h3><?php echo $post['username']; ?></h3>
 
             </div>
 
             <!-- POST IMAGE -->
-            <img class="post-img" src="<?php echo '/uploads/posts/' . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
+            <img class="post-img" src="<?php echo (file_exists($post['filename'])) ? "/uploads/posts/" . $post['filename'] : "/uploads/posts/placeholder.png"; ?>" id="<?php echo $post['id']; ?>">
 
 
             <!-- POST LIKE, COMMENT, EDIT, DELETE BUTTONS -->
