@@ -36,6 +36,11 @@ if (isset($_POST['id'])) {
         ]);
     }
 
+    $encodedLikes = numberOfLikes((int) $postID, $pdo);
+    $likes = json_encode($encodedLikes);
+    header('Content-Type: application/json');
+    // return $likes;
+    redirect('/');
     redirect('/');
 }
 
