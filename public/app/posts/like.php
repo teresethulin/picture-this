@@ -35,11 +35,7 @@ if (isset($_POST['id'])) {
             'post_id' => $postID
         ]);
     }
-    // Convert number of likes into string with json encode
-    $encodedLikes = numberOfLikes((int) $postID, $pdo);
-    $likes = json_encode($encodedLikes);
-    header('Content-Type: application/json');
-    // return $likes;
+
     redirect('/');
 }
 
