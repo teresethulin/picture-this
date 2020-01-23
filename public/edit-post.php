@@ -20,7 +20,7 @@ $post = getPostByID((int) $postID, $pdo);
 
 ?>
 
-<a href="app/users/profile.php">
+<a href="myProfile.php">
     <p class="back-button">
         <i class="fas fa-chevron-left"></i>
         Back

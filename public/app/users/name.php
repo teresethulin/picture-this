@@ -34,5 +34,5 @@ if (isset($_POST['full_name'])) {
 
     $_SESSION['success'] = "Name updated.";
 
-    // redirect('/edit-profile.php');
+    redirect('/edit-profile.php');
 }

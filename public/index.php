@@ -18,37 +18,34 @@ $posts = getAllPosts($pdo); ?>
             <?php $postID = $post['id']; ?>
             <?php $likes = numberOfLikes((int) $postID, $pdo); ?>
             <?php $isLiked = isLiked((int) $userID, (int) $postID, $pdo); ?>
+            <?php //$comments = getCommentsByPostID($postID); ?>
 
-            <div class="post-user-container">
+            <form id="<?= $post['id']; ?>" action="profile.php" method="post">
+                <input type="hidden" name="profileID" value="<?= $post['user_id']; ?>">
+                <div onclick="document.getElementById('<?= $post['id']; ?>').submit();" class="post-user-container">
 
-                <img class="post-avatar" src="<?php echo (file_exists($post['avatar'])) ? "/uploads/avatar/" . $post['avatar'] : "/uploads/avatar/placeholder.png"; ?>">
+                    <img class="post-avatar" src="<?php echo (isset($post['avatar'])) ? "/uploads/avatar/" . $post['avatar'] : "/uploads/avatar/placeholder.png"; ?>">
 
-                <h3><?php echo $post['username']; ?></h3>
+                    <h3><?php echo $post['username']; ?></h3>
 
-            </div>
+                </div>
+            </form>
 
             <!-- POST IMAGE -->
-            <img class="post-img" src="<?php echo (file_exists($post['filename'])) ? "/uploads/posts/" . $post['filename'] : "/uploads/posts/placeholder.png"; ?>" id="<?php echo $post['id']; ?>">
-
+            <img class="post-img" src="<?php echo (isset($post['filename'])) ? "/uploads/posts/" . $post['filename'] : "/uploads/posts/placeholder.png"; ?>" id="<?php echo $post['id']; ?>">
 
             <!-- POST LIKE, COMMENT, EDIT, DELETE BUTTONS -->
             <div class="post-buttons-container">
 
                 <div class="post-buttons">
 
-                    <!-- LIKE BUTTON -->
-                    <form class="form-like" id="<?php echo $postID; ?>" action="app/posts/like.php" method="POST">
+                    <!-- LIKE IMG -->
+                    <button class="like-button" id="<?= $post['id']; ?>"><img class="like-img" id="img-<?= $post['id']; ?>" src="<?php echo ($isLiked !== true) ? "/uploads/icons/heart-inactive.svg" : "/uploads/icons/heart-active.svg"; ?>">
 
-                        <input type="hidden" name="id" value="<?php echo $postID; ?>">
+                        <!-- NUMBER OF LIKES -->
+                        <span class="span-<?= $post['id']; ?>"><?php echo $likes; ?></span>
 
-                        <button class="like-button" type="submit" id="<?php echo $postID; ?>">
-
-                            <i class="<?php echo ($isLiked !== true) ? "far fa-heart" : "fas fa-heart"; ?>"></i>
-
-                            <!-- NUMBER OF LIKES -->
-                            <?php echo $likes; ?>
-
-                        </button>
+                    </button>
 
 
                     </form>
@@ -137,10 +134,12 @@ $posts = getAllPosts($pdo); ?>
             </div>
 
 </div>
-
-<p>
-    <?php echo $post['caption']; ?>
-</p>
+<!-- CAPTION -->
+<p><?php echo $post['caption']; ?></p>
+<!-- COMMENTS -->
+<?php //foreach ($comments as $comment) : ?>
+    <!-- <p><?= $comment['text']; ?></p> -->
+<?php //endforeach; ?>
 
 <p class="post-date">
     <?php

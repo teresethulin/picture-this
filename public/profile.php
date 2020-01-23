@@ -2,27 +2,34 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/../../views/header.php';
+require __DIR__ . '/views/header.php';
 
 if (!isLoggedIn()) {
     redirect('/');
 }
 
-$userID = (int) $_SESSION['user']['id'];
-$user = getUserById((int) $userID, $pdo);
+if(isset($_POST['profileID'])) {
+    if($_POST['profileID']===$_SESSION['user']['id']) {
+        redirect('/myProfile.php');
+    }
+    $profileID = (int) trim(filter_var($_POST['profileID'], FILTER_SANITIZE_NUMBER_INT));
+} else {
+    redirect('/');
+}
+
+$user = getUserById((int) $profileID, $pdo);
 $avatar = $user['avatar'];
-
-$posts = getPostsByUser((int) $userID, $pdo);
-
-?>
+$posts = getPostsByUser((int) $profileID, $pdo);
+$followers = getNumFollowers($profileID, $pdo);
+$followings = getNumFollowings($profileID, $pdo);
+$isFollowing = FollowByID($profileID, (int) $_SESSION['user']['id'], $pdo); ?>
 
 <div class="profile-top-container">
-
     <img class="profile-avatar" src="<?php echo ($avatar !== null) ? "/uploads/avatar/" . $avatar : "/uploads/avatar/placeholder.png"; ?>">
 
     <div class="profile-user">
 
-        <h1 class="profile-username">
+        <h1 class="profile-username" id="<?= $profileID; ?>">
             <?php echo $user['username']; ?>
         </h1>
 
@@ -34,15 +41,37 @@ $posts = getPostsByUser((int) $userID, $pdo);
             ?>
         </p>
 
-        <button class="edit-profile-button" type="button">Edit profile</button>
-
     </div>
 
+</div>
+
+<div class="follow-div">
+    <?php if($isFollowing) : ?>
+        <h6 class="following">Following</h6>
+        <button class="follow-buttons" onclick="unfollowUser()">Unfollow</button>
+    <?php else : ?>
+        <button class="follow-buttons" onclick="followUser()">Follow</button>
+    <?php endif; ?>
 </div>
 
 <p class="profile-bio">
     <?php echo $user['biography']; ?>
 </p>
+
+<div class="post-follow-items">
+    <div class="post-follow-item">
+        <h5><?= count($posts); ?></h5>
+        <h6>POSTS</h6>
+    </div>
+    <div class="post-follow-item">
+        <h5 class="numFollowers"><?= $followers; ?></h5>
+        <h6>FOLLOWERS</h6>
+    </div>
+    <div class="post-follow-item">
+        <h5><?= $followings; ?></h5>
+        <h6>FOLLOWING</h6>
+    </div>
+</div>
 
 <hr>
 
@@ -55,7 +84,8 @@ $posts = getPostsByUser((int) $userID, $pdo);
     <?php foreach ($posts as $post) : ?>
         <?php $postID = $post['id'];
         $likes = numberOfLikes((int) $postID, $pdo);
-        $isLiked = isLiked((int) $userID, (int) $postID, $pdo); ?>
+        $isLiked = isLiked((int) $profileID, (int) $postID, $pdo);
+        // $comments = getCommentsByPostID($postID); ?>
 
         <a href="#openModal<?php echo $post['id']; ?>">
             <img id="<?php echo $post['id']; ?>" class="post-thumbnail" src="<?php echo "/uploads/posts/" . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
@@ -75,19 +105,13 @@ $posts = getPostsByUser((int) $userID, $pdo);
 
                     <div class="post-buttons">
 
-                        <!-- LIKE BUTTON -->
-                        <form class="form-like" id="<?php echo $postID; ?>" action="app/posts/like.php" method="POST">
+                        <!-- LIKE IMG -->
+                    <button class="like-button" id="<?= $post['id']; ?>"><img class="like-img" id="img-<?= $post['id']; ?>" src="<?php echo ($isLiked !== true) ? "/uploads/icons/heart-inactive.svg" : "/uploads/icons/heart-active.svg"; ?>">
 
-                            <input type="hidden" name="id" value="<?php echo $postID; ?>">
+                        <!-- NUMBER OF LIKES -->
+                        <span class="span-<?= $post['id']; ?>"><?php echo $likes; ?></span>
 
-                            <button class="like-button" type="submit" id="<?php echo $postID; ?>">
-
-                                <i class="<?php echo ($isLiked !== true) ? "far fa-heart" : "fas fa-heart"; ?>"></i>
-
-                                <!-- NUMBER OF LIKES -->
-                                <?php echo $likes; ?>
-
-                            </button>
+                    </button>
 
                         </form>
 
@@ -108,8 +132,12 @@ $posts = getPostsByUser((int) $userID, $pdo);
                     </div>
 
                 </div>
-
+                <!-- POST CAPTION -->
                 <p><?php echo $post['caption']; ?></p>
+                <!-- COMMENTS -->
+                <?php //foreach ($comments as $comment) : ?>
+                    <!-- <p><?= $comment['text']; ?></p> -->
+                <?php //endforeach; ?>
 
                 <p class="post-date">
                     <?php
@@ -125,4 +153,4 @@ $posts = getPostsByUser((int) $userID, $pdo);
 
 </section>
 
-<?php require __DIR__ . '/../../views/footer.php'; ?>
+<?php require __DIR__ . '/views/footer.php'; ?>

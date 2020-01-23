@@ -70,6 +70,11 @@
   letter-spacing: 0.3em;
 }
 
+.like-img {
+  width: 15px;
+  filter: invert(95%) sepia(0%) saturate(1178%) hue-rotate(160deg) brightness(92%) contrast(88%);
+}
+
 @media screen and (min-width: 800px) {
   .post-avatar {
     width: 3vw;

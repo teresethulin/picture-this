@@ -49,7 +49,7 @@ if (isset($_FILES['avatar'])) {
         move_uploaded_file($avatar['tmp_name'], $destination);
         $_SESSION['success'] = 'Avatar updated.';
 
-        redirect('profile.php');
+        redirect('../../myProfile.php');
     }
 }
 

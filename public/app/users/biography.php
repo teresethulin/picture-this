@@ -34,5 +34,5 @@ if (isset($_POST['biography'])) {
 
     // Display confirmation
     $_SESSION['success'] = "Biography updated.";
-    redirect('profile.php');
+    redirect('../../myProfile.php');
 }
