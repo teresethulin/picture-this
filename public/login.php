@@ -15,7 +15,7 @@
     <form class="column" action="app/users/login.php" method="post">
         <div class="form-element">
             <input type="text" class="rounded" name="username" id="username" placeholder="Username" required>
-            <input type="text" class="rounded" name="password" id="password" placeholder="Password" required>
+            <input type="password" class="rounded" name="password" id="password" placeholder="Password" required>
         </div>
 
         <button type="submit">Log in</button>
