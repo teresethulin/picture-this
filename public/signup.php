@@ -16,7 +16,7 @@
         <input class="rounded" type="email" name="email" id="email" placeholder="Email" required>
         <input class="rounded" type="text" name="full_name" id="full_name" placeholder="Full name" required>
         <input class="rounded" type="text" name="username" id="username" placeholder="Username" required>
-        <input class="rounded" type="text" name="password" id="password" placeholder="Password" required>
+        <input class="rounded" type="password" name="password" id="password" placeholder="Password" required>
 
         <button type="submit">Sign up</button>
 
