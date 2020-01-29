@@ -41,7 +41,7 @@
 
 .profile-bio {
   margin: 0 5vw;
-  padding: 2vh 0 3vh;
+  padding: 1.5vh 0 1.5vh;
 }
 
 hr {
@@ -63,6 +63,48 @@ hr {
   object-fit: cover;
   border-radius: 5%;
   margin: 0.2rem;
+}
+
+.post-follow-items {
+  display: flex;
+  justify-content: space-around;
+}
+
+.post-follow-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h5, h6 {
+  margin: 4px 0;
+}
+
+.follow-div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.following {
+  color: lightskyblue;
+}
+
+.num-posts {
+  padding-left: 20px;
+}
+
+.num-followers {
+  padding-left: 15px;
+}
+
+.num-followings {
+  padding-right: 10px;
+}
+
+.dummy-post-div, .dummy-user-div {
+  display: none;
 }
 
 @media screen and (min-width: 800px) {

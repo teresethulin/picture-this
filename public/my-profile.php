@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/../../views/header.php';
+require __DIR__ . '/views/header.php';
 
 if (!isLoggedIn()) {
     redirect('/');
@@ -17,6 +17,7 @@ $posts = getPostsByUser((int) $userID, $pdo);
 ?>
 
 <div class="profile-top-container">
+<div class="dummy-user-div" id="<?= $userID; ?>"><?= $_SESSION['user']['username']; ?></div>
 
     <img class="profile-avatar" src="<?php echo ($avatar !== null) ? "/uploads/avatar/" . $avatar : "/uploads/avatar/placeholder.png"; ?>">
 
@@ -53,9 +54,11 @@ $posts = getPostsByUser((int) $userID, $pdo);
     }; ?>
 
     <?php foreach ($posts as $post) : ?>
+        <div class="dummy-post-div" id="<?= $post['user_id']; ?>"></div>
         <?php $postID = $post['id'];
         $likes = numberOfLikes((int) $postID, $pdo);
-        $isLiked = isLiked((int) $userID, (int) $postID, $pdo); ?>
+        $isLiked = isLiked((int) $userID, (int) $postID, $pdo);
+        $comments = getCommentsByPostID((int) $postID, $pdo); ?>
 
         <a href="#openModal<?php echo $post['id']; ?>">
             <img id="<?php echo $post['id']; ?>" class="post-thumbnail" src="<?php echo "/uploads/posts/" . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
@@ -75,24 +78,20 @@ $posts = getPostsByUser((int) $userID, $pdo);
 
                     <div class="post-buttons">
 
-                        <!-- LIKE BUTTON -->
-                        <form class="form-like" id="<?php echo $postID; ?>" action="app/posts/like.php" method="POST">
+                        <!-- LIKE IMG -->
+                            <button class="like-button" id="<?= $post['id']; ?>"><img class="like-img" id="img-<?= $post['id']; ?>" src="<?php echo ($isLiked !== true) ? "/uploads/icons/heart-inactive.svg" : "/uploads/icons/heart-active.svg"; ?>">
 
-                            <input type="hidden" name="id" value="<?php echo $postID; ?>">
-
-                            <button class="like-button" type="submit" id="<?php echo $postID; ?>">
-
-                                <i class="<?php echo ($isLiked !== true) ? "far fa-heart" : "fas fa-heart"; ?>"></i>
-
-                                <!-- NUMBER OF LIKES -->
-                                <?php echo $likes; ?>
+                            <!-- NUMBER OF LIKES -->
+                            <span class="span-<?= $post['id']; ?>"><?php echo $likes; ?></span>
 
                             </button>
 
                         </form>
 
-                        <button class="comment-button">
-                            <i class="far fa-comment-alt"></i>
+                        <button class="comment-button" id="<?= $post['id']; ?>">
+
+                        <i class="far fa-comment-alt"></i>
+
                         </button>
 
                     </div>
@@ -101,15 +100,26 @@ $posts = getPostsByUser((int) $userID, $pdo);
                     <div class="edit-buttons">
 
                         <?php if (isUser($post)) : ?>
-                            <a href="../../edit-post.php?id=<?php echo $post['id']; ?>"><i class="far fa-edit"></i></a>
-                            <a href="../posts/delete.php?id=<?php echo $post['id']; ?>"><i class="far fa-trash-alt"></i></a>
+                            <a href="edit-post.php?id=<?php echo $post['id']; ?>&return=my-profile.php"><i class="far fa-edit"></i></a>
+                            <a href="app/posts/delete.php?id=<?php echo $post['id']; ?>&return=my-profile.php"><i class="far fa-trash-alt"></i></a>
                         <?php endif; ?>
 
                     </div>
 
                 </div>
-
+                <!-- POST CAPTION -->
                 <p><?php echo $post['caption']; ?></p>
+                <!-- COMMENTS -->
+                <div class="comments-container-<?= $post['id']; ?>">
+                    <?php foreach ($comments as $comment) : ?>
+                        <div class="comment-container comment-container-<?= $comment['comment_id']; ?>">
+                        <div class="comment-box comment-writer-<?= $comment['user_id']; ?> comment-owner-<?= $post['user_id']; ?>" id="<?= $comment['comment_id']; ?>">
+                            <h5 class="comment-user"><?= $comment['username']; ?></h5>
+                            <h5 class="comment-text-<?= $comment['comment_id']; ?>"><?= $comment['comment_text']; ?></h5>
+                        </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
 
                 <p class="post-date">
                     <?php
@@ -125,4 +135,4 @@ $posts = getPostsByUser((int) $userID, $pdo);
 
 </section>
 
-<?php require __DIR__ . '/../../views/footer.php'; ?>
+<?php require __DIR__ . '/views/footer.php'; ?>
