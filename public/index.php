@@ -4,13 +4,16 @@ if (!isLoggedIn()) {
     redirect('/login.php');
 }
 
-$userID = (int) $_SESSION['user']['id'];
+$userID = $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
 $posts = getAllPosts($pdo); ?>
 
 <div class="feed-container">
+    <div class="dummy-user-div" id="<?= $userID; ?>"><?= $_SESSION['user']['username']; ?></div>
 
     <?php foreach ($posts as $post) : ?>
+    <div class="dummy-post-div" id="<?= $post['user_id']; ?>"></div>
+
 
         <article>
 
@@ -18,15 +21,15 @@ $posts = getAllPosts($pdo); ?>
             <?php $postID = $post['id']; ?>
             <?php $likes = numberOfLikes((int) $postID, $pdo); ?>
             <?php $isLiked = isLiked((int) $userID, (int) $postID, $pdo); ?>
-            <?php //$comments = getCommentsByPostID($postID); ?>
+            <?php $comments = getCommentsByPostID($postID, $pdo); ?>
 
-            <form id="<?= $post['id']; ?>" action="profile.php" method="post">
+            <form id="form-<?= $post['id']; ?>" action="profile.php" method="post">
                 <input type="hidden" name="profileID" value="<?= $post['user_id']; ?>">
-                <div onclick="document.getElementById('<?= $post['id']; ?>').submit();" class="post-user-container">
+                <div onclick="document.getElementById('form-<?= $post['id']; ?>').submit();" class="post-user-container">
 
                     <img class="post-avatar" src="<?php echo (isset($post['avatar'])) ? "/uploads/avatar/" . $post['avatar'] : "/uploads/avatar/placeholder.png"; ?>">
 
-                    <h3><?php echo $post['username']; ?></h3>
+                    <h3 class="profile-username"><?php echo $post['username']; ?></h3>
 
                 </div>
             </form>
@@ -50,7 +53,7 @@ $posts = getAllPosts($pdo); ?>
 
                     </form>
 
-                    <button class="comment-button">
+                    <button class="comment-button" id="<?= $post['id']; ?>">
 
                         <i class="far fa-comment-alt"></i>
 
@@ -119,7 +122,7 @@ $posts = getAllPosts($pdo); ?>
                                     Are you sure you want to delete this post?
                                 </h2>
 
-                                <a href="app/posts/delete.php?id=<?php echo $post['id']; ?>">
+                                <a href="app/posts/delete.php?id=<?php echo $post['id']; ?>&return=index.php">
                                     <div class="delete-button column">
                                         Delete post <i class="far fa-trash-alt"></i>
                                 </a>
@@ -137,9 +140,16 @@ $posts = getAllPosts($pdo); ?>
 <!-- CAPTION -->
 <p><?php echo $post['caption']; ?></p>
 <!-- COMMENTS -->
-<?php //foreach ($comments as $comment) : ?>
-    <!-- <p><?= $comment['text']; ?></p> -->
-<?php //endforeach; ?>
+<div class="comments-container-<?= $post['id']; ?>">
+    <?php foreach ($comments as $comment) : ?>
+        <div class="comment-container comment-container-<?= $comment['comment_id']; ?>">
+        <div class="comment-box comment-writer-<?= $comment['user_id']; ?> comment-owner-<?= $post['user_id']; ?>" id="<?= $comment['comment_id']; ?>">
+            <h5 class="comment-user"><?= $comment['username']; ?></h5>
+            <h5 class="comment-text-<?= $comment['comment_id']; ?>"><?= $comment['comment_text']; ?></h5>
+        </div>
+        </div>
+    <?php endforeach; ?>
+</div>
 
 <p class="post-date">
     <?php

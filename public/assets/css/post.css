@@ -75,6 +75,40 @@
   filter: invert(95%) sepia(0%) saturate(1178%) hue-rotate(160deg) brightness(92%) contrast(88%);
 }
 
+.comment-box, .comment-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment-user {
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+.edit-post-form {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.edit-comment-button {
+  width: unset;
+  padding: 2px 4px;
+}
+
+.edit-comment-form {
+  padding: 0 0 4px 0;
+}
+
+.comment-edit-delete-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-delete-btn {
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
 @media screen and (min-width: 800px) {
   .post-avatar {
     width: 3vw;

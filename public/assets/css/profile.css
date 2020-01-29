@@ -91,6 +91,22 @@ h5, h6 {
   color: lightskyblue;
 }
 
+.num-posts {
+  padding-left: 20px;
+}
+
+.num-followers {
+  padding-left: 15px;
+}
+
+.num-followings {
+  padding-right: 10px;
+}
+
+.dummy-post-div, .dummy-user-div {
+  display: none;
+}
+
 @media screen and (min-width: 800px) {
   .profile-avatar {
     width: 5vw;

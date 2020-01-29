@@ -17,6 +17,7 @@ $posts = getPostsByUser((int) $userID, $pdo);
 ?>
 
 <div class="profile-top-container">
+<div class="dummy-user-div" id="<?= $userID; ?>"><?= $_SESSION['user']['username']; ?></div>
 
     <img class="profile-avatar" src="<?php echo ($avatar !== null) ? "/uploads/avatar/" . $avatar : "/uploads/avatar/placeholder.png"; ?>">
 
@@ -53,10 +54,11 @@ $posts = getPostsByUser((int) $userID, $pdo);
     }; ?>
 
     <?php foreach ($posts as $post) : ?>
+        <div class="dummy-post-div" id="<?= $post['user_id']; ?>"></div>
         <?php $postID = $post['id'];
         $likes = numberOfLikes((int) $postID, $pdo);
         $isLiked = isLiked((int) $userID, (int) $postID, $pdo);
-        // $comments = getCommentsByPostID($postID); ?>
+        $comments = getCommentsByPostID((int) $postID, $pdo); ?>
 
         <a href="#openModal<?php echo $post['id']; ?>">
             <img id="<?php echo $post['id']; ?>" class="post-thumbnail" src="<?php echo "/uploads/posts/" . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
@@ -86,8 +88,10 @@ $posts = getPostsByUser((int) $userID, $pdo);
 
                         </form>
 
-                        <button class="comment-button">
-                            <i class="far fa-comment-alt"></i>
+                        <button class="comment-button" id="<?= $post['id']; ?>">
+
+                        <i class="far fa-comment-alt"></i>
+
                         </button>
 
                     </div>
@@ -96,8 +100,8 @@ $posts = getPostsByUser((int) $userID, $pdo);
                     <div class="edit-buttons">
 
                         <?php if (isUser($post)) : ?>
-                            <a href="app/posts/edit-post.php?id=<?php echo $post['id']; ?>"><i class="far fa-edit"></i></a>
-                            <a href="app/posts/delete.php?id=<?php echo $post['id']; ?>"><i class="far fa-trash-alt"></i></a>
+                            <a href="edit-post.php?id=<?php echo $post['id']; ?>&return=my-profile.php"><i class="far fa-edit"></i></a>
+                            <a href="app/posts/delete.php?id=<?php echo $post['id']; ?>&return=my-profile.php"><i class="far fa-trash-alt"></i></a>
                         <?php endif; ?>
 
                     </div>
@@ -106,9 +110,16 @@ $posts = getPostsByUser((int) $userID, $pdo);
                 <!-- POST CAPTION -->
                 <p><?php echo $post['caption']; ?></p>
                 <!-- COMMENTS -->
-                <?php //foreach ($comments as $comment) : ?>
-                    <!-- <p><?= $comment['text']; ?></p> -->
-                <?php //endforeach; ?>
+                <div class="comments-container-<?= $post['id']; ?>">
+                    <?php foreach ($comments as $comment) : ?>
+                        <div class="comment-container comment-container-<?= $comment['comment_id']; ?>">
+                        <div class="comment-box comment-writer-<?= $comment['user_id']; ?> comment-owner-<?= $post['user_id']; ?>" id="<?= $comment['comment_id']; ?>">
+                            <h5 class="comment-user"><?= $comment['username']; ?></h5>
+                            <h5 class="comment-text-<?= $comment['comment_id']; ?>"><?= $comment['comment_text']; ?></h5>
+                        </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
 
                 <p class="post-date">
                     <?php

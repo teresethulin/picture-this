@@ -315,6 +315,28 @@ if (!function_exists('FollowByID')) {
     }
 }
 
+if (!function_exists('getCommentsByPostID')) {
+    /**
+     * Get User by user ID
+     *
+     * @param int $postID
+     * @param PDO $pdo
+     * @return array
+     */
+    function getCommentsByPostID(int $postID, PDO $pdo): array
+    {
+        $statement = $pdo->prepare("SELECT * FROM comments WHERE post_id = :post_id");
+        $statement->execute([
+            ":post_id" => $postID
+        ]);
+        $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
+        if($comments===false) {
+            $comments = [];
+        }
+        return $comments;
+    }
+}
+
 if (!function_exists('timeSinceUploaded')) {
     /**
      * Calculates how many seconds, hours, or days since post was uploaded

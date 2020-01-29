@@ -7,10 +7,10 @@ require __DIR__ . '/views/header.php';
 if (!isLoggedIn()) {
     redirect('/');
 }
-
+$userID = $_SESSION['user']['id'];
 if(isset($_POST['profileID'])) {
-    if($_POST['profileID']===$_SESSION['user']['id']) {
-        redirect('/myProfile.php');
+    if($_POST['profileID']===$userID) {
+        redirect('/my-profile.php');
     }
     $profileID = (int) trim(filter_var($_POST['profileID'], FILTER_SANITIZE_NUMBER_INT));
 } else {
@@ -25,6 +25,7 @@ $followings = getNumFollowings($profileID, $pdo);
 $isFollowing = FollowByID($profileID, (int) $_SESSION['user']['id'], $pdo); ?>
 
 <div class="profile-top-container">
+<div class="dummy-user-div" id="<?= $userID; ?>"><?= $_SESSION['user']['username']; ?></div>
     <img class="profile-avatar" src="<?php echo ($avatar !== null) ? "/uploads/avatar/" . $avatar : "/uploads/avatar/placeholder.png"; ?>">
 
     <div class="profile-user">
@@ -59,15 +60,15 @@ $isFollowing = FollowByID($profileID, (int) $_SESSION['user']['id'], $pdo); ?>
 </p>
 
 <div class="post-follow-items">
-    <div class="post-follow-item">
+    <div class="post-follow-item num-posts">
         <h5><?= count($posts); ?></h5>
         <h6>POSTS</h6>
     </div>
-    <div class="post-follow-item">
+    <div class="post-follow-item num-followers">
         <h5 class="numFollowers"><?= $followers; ?></h5>
         <h6>FOLLOWERS</h6>
     </div>
-    <div class="post-follow-item">
+    <div class="post-follow-item num-followings">
         <h5><?= $followings; ?></h5>
         <h6>FOLLOWING</h6>
     </div>
@@ -82,10 +83,11 @@ $isFollowing = FollowByID($profileID, (int) $_SESSION['user']['id'], $pdo); ?>
     }; ?>
 
     <?php foreach ($posts as $post) : ?>
+        <div class="dummy-post-div" id="<?= $post['user_id']; ?>"></div>
         <?php $postID = $post['id'];
         $likes = numberOfLikes((int) $postID, $pdo);
-        $isLiked = isLiked((int) $profileID, (int) $postID, $pdo);
-        // $comments = getCommentsByPostID($postID); ?>
+        $isLiked = isLiked((int) $userID, (int) $postID, $pdo);
+        $comments = getCommentsByPostID((int) $postID, $pdo); ?>
 
         <a href="#openModal<?php echo $post['id']; ?>">
             <img id="<?php echo $post['id']; ?>" class="post-thumbnail" src="<?php echo "/uploads/posts/" . $post['filename']; ?>" id="<?php echo $post['id']; ?>">
@@ -115,8 +117,10 @@ $isFollowing = FollowByID($profileID, (int) $_SESSION['user']['id'], $pdo); ?>
 
                         </form>
 
-                        <button class="comment-button">
-                            <i class="far fa-comment-alt"></i>
+                        <button class="comment-button" id="<?= $post['id']; ?>">
+
+                        <i class="far fa-comment-alt"></i>
+
                         </button>
 
                     </div>
@@ -135,9 +139,16 @@ $isFollowing = FollowByID($profileID, (int) $_SESSION['user']['id'], $pdo); ?>
                 <!-- POST CAPTION -->
                 <p><?php echo $post['caption']; ?></p>
                 <!-- COMMENTS -->
-                <?php //foreach ($comments as $comment) : ?>
-                    <!-- <p><?= $comment['text']; ?></p> -->
-                <?php //endforeach; ?>
+                <div class="comments-container-<?= $post['id']; ?>">
+                    <?php foreach ($comments as $comment) : ?>
+                        <div class="comment-container comment-container-<?= $comment['comment_id']; ?>">
+                        <div class="comment-box comment-writer-<?= $comment['user_id']; ?> comment-owner-<?= $post['user_id']; ?>" id="<?= $comment['comment_id']; ?>">
+                            <h5 class="comment-user"><?= $comment['username']; ?></h5>
+                            <h5 class="comment-text-<?= $comment['comment_id']; ?>"><?= $comment['comment_text']; ?></h5>
+                        </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
 
                 <p class="post-date">
                     <?php

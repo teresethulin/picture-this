@@ -14,7 +14,8 @@ if (!isLoggedIn()) {
 $userID = (int) $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
 
-$postID = $_GET['id'];
+$postID = trim(filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT));
+$returnURL = trim(filter_var($_GET['return'], FILTER_SANITIZE_STRING));
 
 $posts = getPostsByUser((int) $userID, $pdo);
 $post = getPostByID((int) $postID, $pdo);
@@ -42,7 +43,7 @@ if (isset($_POST['caption'])) {
             ]);
 
             $_SESSION['success'] = 'Your post was updated.';
-            redirect('/../../index.php');
+            redirect("/../../$returnURL");
         }
     }
 }
