@@ -78,6 +78,8 @@ function getUserById(int $userID, PDO $pdo): array
 
     if ($user) {
         return $user;
+    } else {
+        return [];
     }
 }
 
@@ -232,6 +234,106 @@ function getCurrentPost($posts)
                 return $postID;
             }
         }
+    }
+}
+
+if (!function_exists('getNumFollowers')) {
+    /**
+     * Get the number of followers by user ID
+     *
+     * @param int $userID
+     * @param PDO $pdo
+     * @return int
+     */
+    function getNumFollowers(int $userID, PDO $pdo): int
+    {
+        $statement = $pdo->prepare("SELECT * FROM follows WHERE id_following = :id_following");
+        $statement->execute([
+            ":id_following" => $userID
+        ]);
+        $followers = $statement->fetchAll(PDO::FETCH_ASSOC);
+        if($followers===false) {
+            return 0;
+        } else {
+            $numFollowers = 0;
+            foreach ($followers as $following) {
+                $numFollowers++;
+            }
+            return $numFollowers;
+        }
+    }
+}
+
+if (!function_exists('getNumFollowings')) {
+    /**
+     * Get the umber of followings by user ID
+     *
+     * @param int $userID
+     * @param PDO $pdo
+     * @return int
+     */
+    function getNumFollowings(int $userID, PDO $pdo): int
+    {
+        $statement = $pdo->prepare("SELECT * FROM follows WHERE user_id = :user_id");
+        $statement->execute([
+            ":user_id" => $userID
+        ]);
+        $followings = $statement->fetchAll(PDO::FETCH_ASSOC);
+        if($followings===false) {
+            return 0;
+        } else {
+            $numFollowings = 0;
+            foreach ($followings as $following) {
+                $numFollowings++;
+            }
+            return $numFollowings;
+        }
+    }
+}
+
+if (!function_exists('FollowByID')) {
+    /**
+     * Check whether logged-in user is following by profile ID
+     *
+     * @param int $profileID
+     * @param int $userID
+     * @param PDO $pdo
+     * @return bool
+     */
+    function FollowByID(int $profileID, int $userID, PDO $pdo): bool
+    {
+        $statement = $pdo->prepare("SELECT * FROM follows WHERE user_id = :user_id AND id_following = :id_following");
+        $statement->execute([
+            ":user_id" => $userID,
+            ":id_following" => $profileID
+        ]);
+        $following = $statement->fetch(PDO::FETCH_ASSOC);
+        if($following!==false) {
+            return true;
+        }
+        return $following;
+    }
+}
+
+if (!function_exists('getCommentsByPostID')) {
+    /**
+     * Get User by user ID
+     *
+     * @param int $postID
+     * @param PDO $pdo
+     * @return array
+     */
+    function getCommentsByPostID(int $postID, PDO $pdo): array
+    {
+        $statement = $pdo->prepare("SELECT * FROM comments WHERE post_id = :post_id");
+        $statement->execute([
+            ":post_id" => $postID
+        ]);
+        $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
+        if($comments===false) {
+            $comments = [];
+        }
+        return $comments;
     }
 }
 

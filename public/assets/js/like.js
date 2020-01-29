@@ -1,49 +1,31 @@
 "use strict";
 
-const likes = document.querySelectorAll(".form-like");
-const icons = document.querySelectorAll(".fa-heart");
-
-// Toggle heart icon
-function toggleIcons() {
-  if (this.classList.contains("far")) {
-    this.classList.remove("far");
-    this.classList.add("fas");
-  } else {
-    this.classList.remove("fas");
-    this.classList.add("far");
-  }
-}
-
-icons.forEach(icon => {
-  icon.addEventListener("click", toggleIcons);
-});
-
-likes.forEach(like => {
-  like.addEventListener("submit", event => {
-    event.preventDefault();
-
-    const heartLiked = `
-        <i class="far fa-heart" alt="liked"></i>
-      `;
-    const heartNotLiked = `
-        <i class="fas fa-heart" alt="unliked"></i>
-      `;
-
-    let likeButton = like.querySelector(".like-button");
-    let numberOfLikes = likeButton.lastElementChild;
-
-    if (likeButton.classList.contains("like")) {
-      likeButton.innerHTML = heartNotLiked;
-    } else {
-      likeButton.innerHTML = heartLiked;
-    }
-    const likeFormData = new FormData(like);
-
-    fetch("/../app/posts/like.php", {
-      method: "POST",
-      body: likeFormData
-    })
-      .then(response => response.json())
-      .then(result => (numberOfLikes.textContent = result));
-  });
+// This section of code runs when a post is liked or unliked.
+let likeBTNs = document.querySelectorAll(".like-button");
+likeBTNs.forEach(likeBTN => {
+    const ID = likeBTN.id;
+    likeBTN.addEventListener('click', event => {
+        const span = document.querySelector(`.span-${ID}`);
+        let numLikes = parseInt(span.innerHTML);
+        const path = `img-${ID}`;
+        const imgSRC = document.getElementById(path).src;
+        if(imgSRC.includes("inactive")) {
+          numLikes = numLikes + 1;
+          likeBTN.innerHTML = `<img class="like-img" id="img-${ID}" src="/uploads/icons/heart-active.svg">
+          <span class="span-${ID}">${numLikes}</span>`;
+        } else {
+          numLikes = numLikes - 1;
+          likeBTN.innerHTML = `<img class="like-img" id="img-${ID}" src="/uploads/icons/heart-inactive.svg">
+          <span class="span-${ID}">${numLikes}</span>`;
+        }
+        event.preventDefault();
+        const likeForm = document.createElement('form');
+        likeForm.method = "post";
+        likeForm.innerHTML = `<input type="hidden" name="post-id" value="${ID}">`;
+        const likeFormData = new FormData(likeForm);
+        fetch("app/posts/like.php", {
+        method: 'POST',
+        body: likeFormData
+        });
+    });
 });

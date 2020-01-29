@@ -39,3 +39,6 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 8. One thing to think about in the future is that you divide your JavaScript into more than one document. 
 9. I like the way you comment your code. In my opinion it’s just the correct amount!
 10. I think you’ve done a very good job in this project and your code is easy to read and neatly organised. Great job Terese! 
+
+## Pull request by Dominic Kersch
+View a contributing pull request by clicking [here](https://github.com/teresethulin/picture-this/pull/2).

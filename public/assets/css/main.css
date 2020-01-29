@@ -207,7 +207,7 @@ ul li {
 .feed-container {
   margin-left: 5vw;
   margin-right: 5vw;
-  padding-bottom: 10vh;
+  padding-bottom: 5vh;
 }
 
 article {
@@ -223,6 +223,7 @@ button {
   background-color: #fff;
   box-shadow: 5px 5px 18px var(--shadow);
   cursor: pointer;
+  outline: none;
 }
 
 h2,

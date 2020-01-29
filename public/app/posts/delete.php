@@ -12,7 +12,8 @@ if (!isLoggedIn()) {
 $userID = (int) $_SESSION['user']['id'];
 $user = getUserById((int) $userID, $pdo);
 
-$postID = $_GET['id'];
+$postID = trim(filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT));
+$returnURL = trim(filter_var($_GET['return'], FILTER_SANITIZE_STRING));
 
 $posts = getPostsByUser((int) $userID, $pdo);
 
@@ -38,11 +39,33 @@ if (isset($_GET['id'])) {
                 ':filename' => $fileName
             ]);
 
+            // Delete likes associated with post
+            $queryDeleteLikes = sprintf('DELETE FROM like WHERE post_id = :post_id');
+            $statement = $pdo->prepare($queryDeleteLikes);
+
+            if (!$statement) {
+                die(var_dump($pdo->errorInfo()));
+            }
+
+            $statement->bindParam(':post_id', $postID, PDO::PARAM_INT);
+            $statement->execute();
+
+            // Delete comments associated with post
+            $queryDeleteComments = sprintf('DELETE FROM comments WHERE post_id = :post_id');
+            $statement = $pdo->prepare($queryDeleteComments);
+
+            if (!$statement) {
+                die(var_dump($pdo->errorInfo()));
+            }
+
+            $statement->bindParam(':post_id', $postID, PDO::PARAM_INT);
+            $statement->execute();
+
             // Remove file from uploads folder
             unlink(__DIR__ . '/../uploads/posts/' . $fileName);
 
             $_SESSION['success'] = 'Your post was deleted.';
-            redirect('/app/users/profile.php');
+            redirect("/$returnURL");
         }
     }
 }
