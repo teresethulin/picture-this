@@ -14,23 +14,25 @@ if(search!=null) {
     })
     .then(response => response.json())
     .then(users => {
-      if(event.target.value.length <=1) {
+      if(event.target.value.length <=0) {
         list.innerHTML = "";
       } else {
         list.innerHTML = "";
-        const item = document.createElement('li');
         if(users.length==0) {
-          item.innerHTML = `<h3>No username found</h3>`;
+          const noResults = document.createElement('li');
+          noResults.innerHTML = `<h3>No username found</h3>`;
+          list.appendChild(noResults);
         } else {
-        users.forEach(user => {
-          item.innerHTML = `<form id="${user['id']}" action="profile.php" method="post">
-          <input type="hidden" name="profileID" value="${user['id']}">
-          <div onclick="document.getElementById('${user['id']}').submit();" class="post-user-container">
-          <img class="post-avatar" src="/uploads/avatar/${user['avatar']}">
-          <h3>${user['username']}</h3></div></form>`
+          users.forEach(user => {
+            const item = document.createElement('li');
+            item.innerHTML = `<form id="${user['id']}" action="profile.php" method="post">
+            <input type="hidden" name="profileID" value="${user['id']}">
+            <div onclick="document.getElementById('${user['id']}').submit();" class="post-user-container">
+            <img class="post-avatar" src="/uploads/avatar/${user['avatar']}">
+            <h3>${user['username']}</h3></div></form>`;
+            list.appendChild(item);
           });
         };
-        list.appendChild(item);
       };
     });
   });
